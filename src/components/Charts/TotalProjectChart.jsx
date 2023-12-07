@@ -36,9 +36,12 @@ const TotalProjectChart = () => {
       colors: ["transparent"],
     },
     title: {
-      text: "COMPLETED PROJECTS",
+      text: "PROJECTS FLOOR AREAS AND PARTICIPANTS",
       align: "center",
       offsetX: 10,
+      style: {
+        fontSize: "16px",
+      },
     },
     colors: ["#008FFB", "#892494"],
     xaxis: {
@@ -64,6 +67,7 @@ const TotalProjectChart = () => {
           text: "Floor Areas (square meter)",
           style: {
             color: "#008FFB",
+            fontSize: "14px",
           },
         },
         tooltip: {
@@ -89,6 +93,7 @@ const TotalProjectChart = () => {
           text: "Number of Participants",
           style: {
             color: "#892494",
+            fontSize: "14px",
           },
         },
       },
@@ -106,7 +111,7 @@ const TotalProjectChart = () => {
     },
   };
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={350} />
+    <ReactApexChart options={options} series={series} type="bar" height={450} />
   );
 };
 

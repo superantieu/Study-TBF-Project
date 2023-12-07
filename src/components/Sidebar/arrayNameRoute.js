@@ -4,8 +4,8 @@ const arrayNameRoute = [
     path: "/",
   },
   {
-    name: "Tables",
-    path: "/tables",
+    name: "Projects",
+    path: "/projects",
   },
   {
     name: "Billing",

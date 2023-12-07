@@ -29,6 +29,9 @@ const ExpectTimeChart = () => {
     title: {
       text: "PROJECT COMPLETION TIME",
       align: "center",
+      style: {
+        fontSize: "16px",
+      },
     },
     plotOptions: {
       bar: {
@@ -64,6 +67,7 @@ const ExpectTimeChart = () => {
         text: "Time (hours)",
         style: {
           color: "#008FFB",
+          fontSize: "14px",
         },
       },
       tooltip: {
@@ -72,7 +76,7 @@ const ExpectTimeChart = () => {
     },
   };
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={350} />
+    <ReactApexChart options={options} series={series} type="bar" height={450} />
   );
 };
 export default ExpectTimeChart;

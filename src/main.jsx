@@ -8,7 +8,7 @@ import LoadingPage from "./pages/Loadingpage.jsx";
 import App from "./App.jsx";
 import ProgressBar from "./components/Commons/ProgressBar/ProgressBar.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import Tables from "./components/Sidebar/Tables.jsx";
+import Projects from "./components/Sidebar/Projects.jsx";
 import Billing from "./components/Sidebar/Billing.jsx";
 import Profile from "./components/Sidebar/AccountPages/Profile.jsx";
 import SignIn from "./components/Sidebar/AccountPages/SignIn.jsx";
@@ -31,10 +31,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/tables",
+        path: "/projects",
         element: (
           <Suspense fallback={<ProgressBar />}>
-            <Tables />
+            <Projects />
           </Suspense>
         ),
       },
