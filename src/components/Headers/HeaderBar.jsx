@@ -23,6 +23,10 @@ import SearchTable from "./SearchTable";
 const HeaderBar = () => {
   const [focus, setFocus] = useState(false);
   const ref = useRef();
+  const [searchvalue, setSearchvalue] = useState("");
+  const handleChange = (e) => {
+    setSearchvalue(e.target.value);
+  };
   useOutsideClick({
     ref: ref,
     handler: () => setFocus(false),
@@ -56,6 +60,7 @@ const HeaderBar = () => {
               variant="outline"
               placeholder="Type here..."
               onFocus={() => setFocus(true)}
+              onChange={handleChange}
             />
 
             <Box
@@ -63,11 +68,13 @@ const HeaderBar = () => {
               h={"250px"}
               bg={"white"}
               position={"absolute"}
-              top={"40px"}
+              top={"50px"}
               left={0}
+              borderRadius={"10px"}
+              boxShadow={"1px 1px 4px purple"}
               display={focus ? "block" : "none"}
             >
-              <SearchTable />
+              <SearchTable searchvalue={searchvalue} overflow={"hidden"} />
             </Box>
           </InputGroup>
           <Box color={"white"} fontWeight={"bold"}>
