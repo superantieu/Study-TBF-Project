@@ -1,50 +1,281 @@
-export const member = {
-  teamA: ["Lufy", "Zoro", "Sanji"],
-  teamB: ["Nami", "Chopper", "Brook"],
-  teamC: ["Franky", "Robin", "Usopp"],
-  teamD: ["Kaido", "BBeard", "Bigmom", "Shanks"],
-};
+import TimeSheet from "./TimeSheet";
+import Task from "./Task";
 
+const projectUsers1 = [
+  {
+    UserId: 1,
+    FullName: "Luffy",
+    Discipline: "A",
+  },
+  {
+    UserId: 2,
+    FullName: "Zoro",
+    Discipline: "A",
+  },
+  {
+    UserId: 3,
+    FullName: "Sanji",
+    Discipline: "A",
+  },
+  {
+    UserId: 4,
+    FullName: "Nami",
+    Discipline: "B",
+  },
+  {
+    UserId: 5,
+    FullName: "Chopper",
+    Discipline: "B",
+  },
+  {
+    UserId: 6,
+    FullName: "Brook",
+    Discipline: "B",
+  },
+  {
+    UserId: 7,
+    FullName: "Franky",
+    Discipline: "C",
+  },
+  {
+    UserId: 8,
+    FullName: "Robin",
+    Discipline: "C",
+  },
+  {
+    UserId: 9,
+    FullName: "Usopp",
+    Discipline: "C",
+  },
+];
+const projectUsers2 = [
+  {
+    UserId: 4,
+    FullName: "Nami",
+    Discipline: "B",
+  },
+  {
+    UserId: 5,
+    FullName: "Chopper",
+    Discipline: "B",
+  },
+  {
+    UserId: 6,
+    FullName: "Brook",
+    Discipline: "B",
+  },
+  {
+    UserId: 7,
+    FullName: "Franky",
+    Discipline: "C",
+  },
+  {
+    UserId: 8,
+    FullName: "Robin",
+    Discipline: "C",
+  },
+  {
+    UserId: 9,
+    FullName: "Usopp",
+    Discipline: "C",
+  },
+];
+const projectUsers3 = [
+  {
+    UserId: 1,
+    FullName: "Luffy",
+    Discipline: "A",
+  },
+  {
+    UserId: 2,
+    FullName: "Zoro",
+    Discipline: "A",
+  },
+  {
+    UserId: 3,
+    FullName: "Sanji",
+    Discipline: "A",
+  },
+  {
+    UserId: 4,
+    FullName: "Nami",
+    Discipline: "B",
+  },
+  {
+    UserId: 5,
+    FullName: "Chopper",
+    Discipline: "B",
+  },
+  {
+    UserId: 6,
+    FullName: "Brook",
+    Discipline: "B",
+  },
+  {
+    UserId: 10,
+    FullName: "Kaido",
+    Discipline: "D",
+  },
+  {
+    UserId: 11,
+    FullName: "BBeard",
+    Discipline: "D",
+  },
+  {
+    UserId: 12,
+    FullName: "Bigmom",
+    Discipline: "D",
+  },
+  {
+    UserId: 13,
+    FullName: "Shanks",
+    Discipline: "D",
+  },
+];
+const projectUsers4 = [
+  {
+    UserId: 1,
+    FullName: "Luffy",
+    Discipline: "A",
+  },
+  {
+    UserId: 2,
+    FullName: "Zoro",
+    Discipline: "A",
+  },
+  {
+    UserId: 3,
+    FullName: "Sanji",
+    Discipline: "A",
+  },
+];
+const projectUsers5 = [
+  {
+    UserId: 1,
+    FullName: "Luffy",
+    Discipline: "A",
+  },
+  {
+    UserId: 2,
+    FullName: "Zoro",
+    Discipline: "A",
+  },
+  {
+    UserId: 3,
+    FullName: "Sanji",
+    Discipline: "A",
+  },
+  {
+    UserId: 4,
+    FullName: "Nami",
+    Discipline: "B",
+  },
+  {
+    UserId: 5,
+    FullName: "Chopper",
+    Discipline: "B",
+  },
+  {
+    UserId: 6,
+    FullName: "Brook",
+    Discipline: "B",
+  },
+  {
+    UserId: 7,
+    FullName: "Franky",
+    Discipline: "C",
+  },
+  {
+    UserId: 8,
+    FullName: "Robin",
+    Discipline: "C",
+  },
+  {
+    UserId: 9,
+    FullName: "Usopp",
+    Discipline: "C",
+  },
+  {
+    UserId: 10,
+    FullName: "Kaido",
+    Discipline: "D",
+  },
+  {
+    UserId: 11,
+    FullName: "BBeard",
+    Discipline: "D",
+  },
+  {
+    UserId: 12,
+    FullName: "Bigmom",
+    Discipline: "D",
+  },
+  {
+    UserId: 13,
+    FullName: "Shanks",
+    Discipline: "D",
+  },
+];
 const projects = [
   {
-    name: "Landmark",
-    totalhours: 1000,
-    floorareas: 10000,
-    listmember: [...member.teamA, ...member.teamB, ...member.teamC],
-    expect: 1200,
+    ProjectId: 1,
+    ProjectName: "Landmark",
+    TotalHours: TimeSheet[0].TSHours,
+    Tasks: { Task },
+    FloorAreas: 10000,
+    ListMember: projectUsers1,
+
+    StartDate: new Date(2023, 1, 17),
+    CompletedDate: new Date(2024, 6, 17),
+    TargetDate: new Date(2024, 5, 17),
   },
   {
-    name: "Bitexco",
-    totalhours: 900,
-    floorareas: 8000,
-    listmember: [...member.teamB, ...member.teamC],
-    expect: 800,
+    ProjectId: 2,
+    ProjectName: "Bitexco",
+    TotalHours: TimeSheet[1].TSHours,
+    Tasks: { Task },
+    FloorAreas: 8000,
+    ListMember: projectUsers2,
+
+    StartDate: new Date(2023, 2, 17),
+    CompletedDate: new Date(2024, 7, 17),
+    TargetDate: new Date(2024, 5, 27),
   },
   {
-    name: "Vinhome",
-    totalhours: 1200,
-    floorareas: 14000,
-    listmember: [...member.teamA, ...member.teamC, ...member.teamD],
-    expect: 1300,
+    ProjectId: 3,
+    ProjectName: "Vinhome",
+    TotalHours: TimeSheet[2].TSHours,
+    Tasks: { Task },
+    FloorAreas: 14000,
+    ListMember: projectUsers3,
+
+    StartDate: new Date(2023, 3, 17),
+    CompletedDate: new Date(2024, 8, 17),
+    TargetDate: new Date(2024, 10, 7),
   },
   {
-    name: "Hanhouse",
-    totalhours: 500,
-    floorareas: 1000,
-    listmember: [...member.teamA],
-    expect: 300,
+    ProjectId: 4,
+    ProjectName: "Hanhouse",
+    TotalHours: TimeSheet[3].TSHours,
+    Tasks: { Task },
+    FloorAreas: 1000,
+    ListMember: projectUsers4,
+
+    StartDate: new Date(2023, 4, 17),
+    CompletedDate: new Date(2024, 9, 17),
+    TargetDate: new Date(2024, 11, 2),
   },
   {
-    name: "Supvilla",
-    totalhours: 1500,
-    floorareas: 20000,
-    listmember: [
-      ...member.teamA,
-      ...member.teamB,
-      ...member.teamC,
-      ...member.teamD,
-    ],
-    expect: 2000,
+    ProjectId: 5,
+    ProjectName: "Supvilla",
+    TotalHours: TimeSheet[4].TSHours,
+    Tasks: { Task },
+    FloorAreas: 20000,
+    ListMember: projectUsers5,
+
+    StartDate: new Date(2023, 5, 17),
+    CompletedDate: new Date(2024, 11, 17),
+    TargetDate: new Date(2024, 1, 17),
   },
 ];
 

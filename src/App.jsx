@@ -13,8 +13,14 @@ function App() {
     >
       <HeaderBar />
 
-      <Box w="100vw" h="calc(100dvh - 120px)" maxHeight="100dvh">
+      <Flex
+        w="full"
+        h="calc(100dvh - 120px)"
+        maxHeight="100dvh"
+        justify={"center"}
+      >
         <Grid
+          w={"86vw"}
           templateColumns="repeat(12, 1fr)"
           columnGap={4}
           templateRows="auto 1fr auto"
@@ -27,7 +33,7 @@ function App() {
             <Outlet />
           </GridItem>
         </Grid>
-      </Box>
+      </Flex>
 
       <FooterBar />
     </Box>

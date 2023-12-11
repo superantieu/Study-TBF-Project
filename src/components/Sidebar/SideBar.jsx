@@ -8,11 +8,14 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import arrayNameRoute from "./arrayNameRoute";
+import { useState } from "react";
 const SideBar = () => {
-  let activeColor = "white";
   let sidebarBg =
     "linear-gradient(0deg, #D9AFD9 0%, #97D9E1 50%, #ffffff 100%)";
-
+  const [active, setActive] = useState("/");
+  const handleClick = (path) => {
+    setActive(path);
+  };
   return (
     <Box
       h={"calc(100dvh - 120px)"}
@@ -21,40 +24,33 @@ const SideBar = () => {
       padding={"10px"}
       ml={"10px"}
     >
-      <Stack direction="column" mb="100px" w="full" h="full">
+      <Stack direction="column" mb="100px" w="full" h="full" gap={"12px"}>
         {arrayNameRoute.map((rou) => {
           return (
             <SupLink as={Link} key={rou.path} to={rou.path}>
               <Button
                 boxSize="initial"
+                transition="transform 0.3s ease"
+                _hover={{ transform: "translateY(-2px)" }}
                 justifyContent="flex-start"
                 alignItems="center"
-                backgroundColor={"rgb(119 125 137 / 30%)"}
-                mb={{
-                  xl: "12px",
-                }}
-                mx={{
-                  xl: "auto",
-                }}
-                ps={{
-                  sm: "10px",
-                  xl: "16px",
-                }}
-                py="12px"
+                backgroundColor={"transparent"}
+                border={"1px solid purple"}
+                color={"purple"}
+                h={"40px"}
                 borderRadius="15px"
-                _hover="none"
                 w="100%"
+                boxShadow="2px 2px 4px purple"
                 _active={{
-                  bg: "inherit",
-                  transform: "none",
-                  borderColor: "transparent",
-                }}
-                _focus={{
+                  bg: "purple",
+                  color: "white",
                   boxShadow: "none",
                 }}
+                isActive={active === rou.path}
+                onClick={() => handleClick(rou.path)}
               >
                 <Flex>
-                  <Text color={activeColor} my="auto" fontSize="sm">
+                  <Text my="auto" fontSize="sm">
                     {rou.name}
                   </Text>
                 </Flex>

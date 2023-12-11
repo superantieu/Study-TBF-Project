@@ -1,18 +1,20 @@
 import ReactApexChart from "react-apexcharts";
 import projects from "./Projects";
+
+const memb = projects.map((obj, index) => {
+  return obj.ListMember.length;
+});
 const TotalProjectChart = () => {
   const series = [
     {
       name: "Floor Area",
       data: projects.map((obj) => {
-        return obj.floorareas;
+        return obj.FloorAreas;
       }),
     },
     {
       name: "Members",
-      data: projects.map((obj) => {
-        return obj.listmember.length;
-      }),
+      data: memb,
     },
   ];
   const options = {
@@ -46,7 +48,7 @@ const TotalProjectChart = () => {
     colors: ["#008FFB", "#892494"],
     xaxis: {
       categories: projects.map((obj) => {
-        return obj.name;
+        return obj.ProjectName;
       }),
     },
     yaxis: [

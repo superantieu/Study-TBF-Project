@@ -11,16 +11,26 @@ import {
   Td,
   CircularProgress,
   CircularProgressLabel,
+  Divider,
+  AbsoluteCenter,
 } from "@chakra-ui/react";
 const list = ongoingProject;
 const OngoingProject = () => {
   return (
-    <Box w={"full"} mt={"50px"}>
+    <Box w={"full"} mt={"30px"}>
+      <Box position="relative" padding="10">
+        <Divider />
+        <AbsoluteCenter
+          bg="purple"
+          color={"white"}
+          px="8"
+          borderRadius={"99px"}
+        >
+          ONGOING PROJECTS
+        </AbsoluteCenter>
+      </Box>
       <TableContainer mr={"20px"}>
         <Table variant={"striped"} colorScheme="blue">
-          <TableCaption fontSize={"20PX"} color={"purple"}>
-            ONGOING PROJECTS
-          </TableCaption>
           <Thead>
             <Tr>
               <Th>Project</Th>
@@ -28,33 +38,37 @@ const OngoingProject = () => {
               <Th>Targetdate</Th>
               <Th>Members</Th>
               <Th>Tasks</Th>
-              <Th>Completion</Th>
+              <Th textAlign={"center"}>Completion</Th>
             </Tr>
           </Thead>
           <Tbody>
             {ongoingProject.map((arr, index) => (
               <Tr key={index}>
-                <Td>{arr.name}</Td>
+                <Td>{arr.ProjectName}</Td>
                 <Td>
-                  {arr.startdate.toLocaleDateString("en-US", {
+                  {arr.StartDate.toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit",
                   })}
                 </Td>
                 <Td>
-                  {arr.targetdate.toLocaleDateString("en-US", {
+                  {arr.TargetDate.toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit",
                   })}
                 </Td>
-                <Td>{arr.members}</Td>
-                <Td>{arr.tasks}</Td>
-                <Td>
-                  <CircularProgress value={arr.completion} color="purple.400">
+                <Td>{arr.ListMember.length}</Td>
+                <Td>{arr.Tasks}</Td>
+                <Td padding={"4px"} textAlign={"center"}>
+                  <CircularProgress
+                    value={arr.Completion}
+                    color="purple.400"
+                    size={"46px"}
+                  >
                     <CircularProgressLabel>
-                      {arr.completion}%
+                      {arr.Completion}%
                     </CircularProgressLabel>
                   </CircularProgress>
                 </Td>

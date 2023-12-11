@@ -4,24 +4,24 @@ const arrayNameRoute = [
     path: "/",
   },
   {
-    name: "Projects",
-    path: "/projects",
+    name: "Completed Projects",
+    path: "/completedprojects",
   },
   {
-    name: "Billing",
-    path: "/billing",
+    name: "Ongoing Projects",
+    path: "/ongoingproject",
   },
-  {
-    name: "Profile",
-    path: "/profile",
-  },
-  {
-    name: "Sign In",
-    path: "/signin",
-  },
-  {
-    name: "Sign Up",
-    path: "/signup",
-  },
+  // {
+  //   name: "Profile",
+  //   path: "/profile",
+  // },
+  // {
+  //   name: "Sign In",
+  //   path: "/signin",
+  // },
+  // {
+  //   name: "Sign Up",
+  //   path: "/signup",
+  // },
 ];
 export default arrayNameRoute;

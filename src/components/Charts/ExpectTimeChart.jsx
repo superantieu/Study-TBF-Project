@@ -3,12 +3,18 @@ import projects from "./Projects";
 const ExpectTimeChart = () => {
   const target = projects.map((obj) => {
     return {
-      x: obj.name,
-      y: obj.totalhours,
+      x: obj.ProjectName,
+      y: Math.round(
+        (obj.CompletedDate.getTime() - obj.StartDate.getTime()) /
+          (1000 * 24 * 3660)
+      ),
       goals: [
         {
           name: "Target Time",
-          value: obj.expect,
+          value: Math.round(
+            (obj.TargetDate.getTime() - obj.StartDate.getTime()) /
+              (1000 * 24 * 3660)
+          ),
           strokeHeight: 5,
           strokeColor: "#775DD0",
         },
@@ -64,7 +70,7 @@ const ExpectTimeChart = () => {
         },
       },
       title: {
-        text: "Time (hours)",
+        text: "Time (days)",
         style: {
           color: "#008FFB",
           fontSize: "14px",

@@ -1,14 +1,14 @@
-import { Box, Card, Text, CardBody } from "@chakra-ui/react";
+import Scrollbars from "react-custom-scrollbars-2";
+
+import ProjectList from "../Charts/ProjectList";
+
+import projects from "../Charts/Projects";
 
 const Projects = () => {
   return (
-    <Box bg={"red"}>
-      <Card>
-        <CardBody>
-          <Text>View a summary of all your customers over the last month.</Text>
-        </CardBody>
-      </Card>
-    </Box>
+    <Scrollbars autoHide={true} autoHideTimeout={1000}>
+      <ProjectList projects={projects} />
+    </Scrollbars>
   );
 };
 
