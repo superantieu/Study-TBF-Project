@@ -9,8 +9,10 @@ import {
   Image,
   Circle,
 } from "@chakra-ui/react";
-import avatar1 from "../../../assets/img/avatars/ava.jpg";
 import { EditIcon } from "@chakra-ui/icons";
+
+import avatar1 from "../../../assets/img/avatars/ava.jpg";
+
 const Profile = () => {
   return (
     <Flex
@@ -29,7 +31,6 @@ const Profile = () => {
           h={"100px"}
           bg={"gray"}
           borderRadius={"50%"}
-          // overflow={"hidden"}
           position={"relative"}
           _hover={{
             "> .edit": {
@@ -42,7 +43,6 @@ const Profile = () => {
             alt="sup"
             objectFit={"cover"}
             borderRadius={"50%"}
-            // clipPath={"circle(40% at 100% 100%)"}
           />
 
           <Flex

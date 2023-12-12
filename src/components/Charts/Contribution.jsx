@@ -1,4 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+
 const Contribution = (props) => {
   const { teams } = props;
   return (

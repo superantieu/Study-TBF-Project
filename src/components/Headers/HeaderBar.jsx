@@ -17,7 +17,7 @@ import {
   useOutsideClick,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import SearchBar from "./SearchTable";
+
 import SearchTable from "./SearchTable";
 
 const HeaderBar = () => {

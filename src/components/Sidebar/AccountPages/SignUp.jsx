@@ -13,8 +13,9 @@ import {
   Circle,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { FaAppStore, FaApple, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaApple, FaFacebook, FaTwitter } from "react-icons/fa";
 import { useState } from "react";
+
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);

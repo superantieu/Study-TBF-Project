@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Container, Flex, Grid, GridItem, Box } from "@chakra-ui/react";
+
 import SideBar from "./components/Sidebar/Sidebar.jsx";
 import HeaderBar from "./components/Headers/HeaderBar.jsx";
 import FooterBar from "./components/Footers/FooterBar.jsx";
-import BackgroundBody from "./assets/img/background-body-admin.png";
 
 function App() {
   return (

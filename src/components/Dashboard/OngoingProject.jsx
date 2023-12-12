@@ -1,8 +1,6 @@
-import ongoingProject from "./ongoing";
 import {
   Box,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Th,
@@ -14,6 +12,9 @@ import {
   Divider,
   AbsoluteCenter,
 } from "@chakra-ui/react";
+
+import ongoingProject from "../Data/ongoing";
+
 const list = ongoingProject;
 const OngoingProject = () => {
   return (

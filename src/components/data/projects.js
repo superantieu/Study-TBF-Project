@@ -1,5 +1,5 @@
-import TimeSheet from "./TimeSheet";
-import Task from "./Task";
+import TimeSheet from "./timeSheet";
+import Task from "./task";
 
 const projectUsers1 = [
   {

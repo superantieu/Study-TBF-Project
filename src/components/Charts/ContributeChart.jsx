@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
 import ReactApexChart from "react-apexcharts";
+
 const ContributeChart = (props) => {
   const { totalhour } = props;
   console.log(totalhour);

@@ -1,11 +1,11 @@
-import { Container, Flex, HStack, Text, Box } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { Scrollbars } from "react-custom-scrollbars-2";
-
-import projects from "../components/Charts/Projects";
-import TotalProjectChart from "../components/Charts/TotalProjectChart";
-import ExpectTimeChart from "../components/Charts/ExpectTimeChart";
-import OngoingProject from "../components/Charts/OngoingProject";
 import { Divider, AbsoluteCenter } from "@chakra-ui/react";
+
+import TotalProjectChart from "../Charts/TotalProjectChart";
+import ExpectTimeChart from "../Charts/ExpectTimeChart";
+import OngoingProject from "./OngoingProject";
+
 const Dashboard = () => {
   return (
     <Scrollbars autoHide={true} autoHideTimeout={1000}>

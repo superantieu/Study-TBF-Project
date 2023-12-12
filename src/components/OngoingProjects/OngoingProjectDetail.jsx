@@ -1,7 +1,7 @@
 import Scrollbars from "react-custom-scrollbars-2";
 
-import ongoingProject from "../Charts/ongoing";
-import OngoingList from "../Charts/OngoingList";
+import ongoingProject from "../Data/ongoing";
+import OngoingList from "./OngoingList";
 
 const OngoingProjectDetail = () => {
   return (

@@ -1,6 +1,7 @@
-import projects from "../Charts/Projects";
-import ongoingProject from "../Charts/ongoing";
-import User from "../Charts/User";
+import projects from "./projects";
+import ongoingProject from "./ongoing";
+import User from "./users";
+
 const name = User.map((user) => {
   return user.FullName;
 });

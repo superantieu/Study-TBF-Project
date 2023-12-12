@@ -1,8 +1,8 @@
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
-import Contribution from "./Contribution";
-import groupbykey from "../../../src/utility/groupbykey";
-import ContributeChart from "./ContributeChart";
+import Contribution from "../Charts/Contribution";
+import groupbykey from "../../utility/groupbykey";
+import ContributeChart from "../Charts/ContributeChart";
 
 const ProjectDetail = (props) => {
   const { project } = props;

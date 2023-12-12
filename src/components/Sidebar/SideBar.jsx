@@ -7,8 +7,10 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import arrayNameRoute from "./arrayNameRoute";
 import { useState } from "react";
+
+import arrayNameRoute from "../data/arrayNameRoute";
+
 const SideBar = () => {
   let sidebarBg =
     "linear-gradient(0deg, #D9AFD9 0%, #97D9E1 50%, #ffffff 100%)";

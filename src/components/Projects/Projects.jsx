@@ -1,8 +1,7 @@
 import Scrollbars from "react-custom-scrollbars-2";
 
-import ProjectList from "../Charts/ProjectList";
-
-import projects from "../Charts/Projects";
+import ProjectList from "./ProjectList";
+import projects from "../Data/projects";
 
 const Projects = () => {
   return (

@@ -1,5 +1,7 @@
 import ReactApexChart from "react-apexcharts";
-import projects from "./Projects";
+
+import projects from "../Data/projects";
+
 const ExpectTimeChart = () => {
   const target = projects.map((obj) => {
     return {

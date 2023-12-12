@@ -2,18 +2,14 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from "./App.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import NotFoundPage from "./pages/NotfoundPage.jsx";
 import LoadingPage from "./pages/Loadingpage.jsx";
-import App from "./App.jsx";
-
-import Dashboard from "./pages/Dashboard.jsx";
-import Projects from "./components/Sidebar/Projects.jsx";
-
-import Profile from "./components/Sidebar/AccountPages/Profile.jsx";
-import SignIn from "./components/Sidebar/AccountPages/SignIn.jsx";
-import SignUp from "./components/Sidebar/AccountPages/SignUp.jsx";
-import OngoingProjectDetail from "./components/Sidebar/OngoingProjectDetail.jsx";
+import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import Projects from "./components/Projects/Projects.jsx";
+import OngoingProjectDetail from "./components/OngoingProjects/OngoingProjectDetail.jsx";
 
 // const HomePage = lazy(() => import("./pages/Home.page.tsx"));
 
@@ -47,30 +43,6 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // {
-      //   path: "/profile",
-      //   element: (
-      //     <Suspense fallback={<ProgressBar />}>
-      //       <Profile />
-      //     </Suspense>
-      //   ),
-      // },
-      // {
-      //   path: "/signin",
-      //   element: (
-      //     <Suspense fallback={<ProgressBar />}>
-      //       <SignIn />
-      //     </Suspense>
-      //   ),
-      // },
-      // {
-      //   path: "/signup",
-      //   element: (
-      //     <Suspense fallback={<ProgressBar />}>
-      //       <SignUp />
-      //     </Suspense>
-      //   ),
-      // },
     ],
   },
 

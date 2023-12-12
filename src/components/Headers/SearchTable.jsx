@@ -1,7 +1,8 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { useState } from "react";
-import search from "../Commons/search";
 import { Scrollbars } from "react-custom-scrollbars-2";
+
+import search from "../data/search";
+
 const SearchTable = (props) => {
   const { searchvalue } = props;
 

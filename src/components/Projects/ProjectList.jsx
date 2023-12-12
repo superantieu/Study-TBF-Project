@@ -1,7 +1,4 @@
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
-import projects from "./Projects";
-import User from "./User";
-import Contribution from "./Contribution";
+import { Box } from "@chakra-ui/react";
 import ProjectDetail from "./ProjectDetail";
 
 const ProjectList = (props) => {

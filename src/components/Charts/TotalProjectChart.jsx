@@ -1,5 +1,6 @@
 import ReactApexChart from "react-apexcharts";
-import projects from "./Projects";
+
+import projects from "../Data/projects";
 
 const memb = projects.map((obj, index) => {
   return obj.ListMember.length;
