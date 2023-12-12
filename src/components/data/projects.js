@@ -220,7 +220,8 @@ const projects = [
   {
     ProjectId: 1,
     ProjectName: "Landmark",
-    TotalHours: TimeSheet[0].TSHours,
+    TotalHours: TimeSheet[0],
+
     Tasks: { Task },
     FloorAreas: 10000,
     ListMember: projectUsers1,
@@ -232,7 +233,7 @@ const projects = [
   {
     ProjectId: 2,
     ProjectName: "Bitexco",
-    TotalHours: TimeSheet[1].TSHours,
+    TotalHours: TimeSheet[1],
     Tasks: { Task },
     FloorAreas: 8000,
     ListMember: projectUsers2,
@@ -244,7 +245,7 @@ const projects = [
   {
     ProjectId: 3,
     ProjectName: "Vinhome",
-    TotalHours: TimeSheet[2].TSHours,
+    TotalHours: TimeSheet[2],
     Tasks: { Task },
     FloorAreas: 14000,
     ListMember: projectUsers3,
@@ -256,7 +257,7 @@ const projects = [
   {
     ProjectId: 4,
     ProjectName: "Hanhouse",
-    TotalHours: TimeSheet[3].TSHours,
+    TotalHours: TimeSheet[3],
     Tasks: { Task },
     FloorAreas: 1000,
     ListMember: projectUsers4,
@@ -268,7 +269,7 @@ const projects = [
   {
     ProjectId: 5,
     ProjectName: "Supvilla",
-    TotalHours: TimeSheet[4].TSHours,
+    TotalHours: TimeSheet[4],
     Tasks: { Task },
     FloorAreas: 20000,
     ListMember: projectUsers5,

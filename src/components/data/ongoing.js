@@ -175,7 +175,7 @@ const ongoingProject = [
   {
     ProjectId: 1,
     ProjectName: "Empires",
-    TotalHours: TimeSheet[5].TSHours,
+    TotalHours: TimeSheet[5],
     StartDate: new Date(2023, 1, 17),
     TargetDate: new Date(2025, 1, 17),
     ListMember: projectUsers6,
@@ -185,7 +185,7 @@ const ongoingProject = [
   {
     ProjectId: 2,
     ProjectName: "Vinpearl",
-    TotalHours: TimeSheet[6].TSHours,
+    TotalHours: TimeSheet[6],
     StartDate: new Date(2023, 8, 17),
     TargetDate: new Date(2025, 8, 17),
     ListMember: projectUsers7,
@@ -195,7 +195,7 @@ const ongoingProject = [
   {
     ProjectId: 3,
     ProjectName: "NhaTrang",
-    TotalHours: TimeSheet[7].TSHours,
+    TotalHours: TimeSheet[7],
     StartDate: new Date(2023, 11, 17),
     TargetDate: new Date(2025, 11, 17),
     ListMember: projectUsers8,

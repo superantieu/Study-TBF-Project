@@ -1,15 +1,51 @@
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Select,
+  Text,
+  useOutsideClick,
+} from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { useState, useRef } from "react";
 
-import Contribution from "../Charts/Contribution";
 import groupbykey from "../../utility/groupbykey";
+import Contribution from "../Charts/Contribution";
 import ContributeChart from "../Charts/ContributeChart";
+import ContributeByPerson from "../Charts/ContribueByPerson";
+import ContributeByTask from "../Charts/ContributeByTask";
 
 const OngiongDetail = (props) => {
   const { ongoingProject } = props;
   const users = ongoingProject.ListMember;
-  const totalHours = Object.values(ongoingProject.TotalHours);
+  const totalHours = Object.values(ongoingProject.TotalHours.TSHours);
   const teams = groupbykey(users, "Discipline");
 
+  const ref = useRef();
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  useOutsideClick({
+    ref: ref,
+    handler: () => setIsSelectOpen(false),
+  });
+
+  const [contributechart, setContribute] = useState(
+    <ContributeChart totalhour={ongoingProject.TotalHours.TSHours} />
+  );
+  const handleChart = (e) => {
+    console.log(e.target.value);
+    e.target.value === "team"
+      ? setContribute(
+          <ContributeChart totalhour={ongoingProject.TotalHours.TSHours} />
+        )
+      : e.target.value === "person"
+      ? setContribute(
+          <ContributeByPerson personhour={ongoingProject.TotalHours.TSPerson} />
+        )
+      : setContribute(
+          <ContributeByTask taskhour={ongoingProject.TotalHours.TSTasks} />
+        );
+  };
   return (
     <Box>
       <Flex
@@ -88,14 +124,56 @@ const OngiongDetail = (props) => {
         gap={"40px"}
         mr={"20px"}
         mt={"40px"}
+        minHeight={"425px"}
       >
         <Contribution teams={teams} />
 
-        <Box w={"50%"}>
-          <Flex flexDirection={"column"} align={"center"} justify={"center"}>
-            <ContributeChart totalhour={ongoingProject.TotalHours} />
-            <Text mt={"30px"} fontWeight={"bold"} fontSize={"20PX"}>
-              THE CONTRIBUTION OF THE TEAMS (HOURS)
+        <Box w={"50%"} position={"relative"}>
+          <Button
+            position={"absolute"}
+            top={0}
+            right={0}
+            w={"40px"}
+            height={"40px"}
+            borderRadius={"50%"}
+            _hover={"none"}
+            bg={"transparent"}
+            onClick={() => setIsSelectOpen(true)}
+          >
+            <HamburgerIcon />
+          </Button>
+          <Select
+            ref={ref}
+            icon={"none"}
+            mt={4}
+            position={"absolute"}
+            right={0}
+            top={"20px"}
+            bg={"#c9d2dd"}
+            border={"1px solid purple"}
+            w={"120px"}
+            height={"30px"}
+            zIndex={"2"}
+            onChange={handleChart}
+            display={isSelectOpen ? "block" : "none"}
+          >
+            <option value="team">TEAM</option>
+            <option value="person">PERSON</option>
+            <option value="task">TASK</option>
+          </Select>
+          <Flex
+            flexDirection={"column"}
+            align={"flex-start"}
+            justify={"center"}
+          >
+            <Box w={"80%"}>{contributechart}</Box>
+            <Text
+              mt={"30px"}
+              fontWeight={"bold"}
+              fontSize={"20PX"}
+              alignSelf={"center"}
+            >
+              THE CONTRIBUTION (HOURS)
             </Text>
           </Flex>
         </Box>

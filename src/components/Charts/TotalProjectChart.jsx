@@ -22,6 +22,9 @@ const TotalProjectChart = () => {
     chart: {
       type: "bar",
       height: 450,
+      toolbar: {
+        show: false,
+      },
     },
     plotOptions: {
       bar: {
@@ -105,6 +108,7 @@ const TotalProjectChart = () => {
     fill: {
       opacity: 1,
     },
+
     tooltip: {
       y: {
         formatter: function (val) {

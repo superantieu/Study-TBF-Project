@@ -33,6 +33,9 @@ const ExpectTimeChart = () => {
     chart: {
       height: 350,
       type: "bar",
+      toolbar: {
+        show: false,
+      },
     },
     title: {
       text: "PROJECT COMPLETION TIME",
