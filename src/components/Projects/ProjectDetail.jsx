@@ -18,6 +18,7 @@ import ContributeByTask from "../Charts/ContributeByTask";
 
 const ProjectDetail = (props) => {
   const { project } = props;
+
   const users = project.ListMember;
   const totalHours = Object.values(project.TotalHours.TSHours);
   const teams = groupbykey(users, "Discipline");
@@ -97,25 +98,47 @@ const ProjectDetail = (props) => {
             })}{" "}
           </Box>
         </Flex>
-        <Flex
-          justify={"space-between"}
-          align={"center"}
-          border={"2px solid purple"}
-          gap={"10px"}
-          padding={"4px"}
-          fontSize={"20px"}
-          borderRadius={"99px"}
-          color={"purple"}
-        >
-          <Text>FINISHED</Text>
-          <Box>
-            {project.CompletedDate.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}{" "}
-          </Box>
-        </Flex>
+        {project.CompletedDate ? (
+          <Flex
+            justify={"space-between"}
+            align={"center"}
+            border={"2px solid purple"}
+            gap={"10px"}
+            padding={"4px"}
+            fontSize={"20px"}
+            borderRadius={"99px"}
+            color={"purple"}
+          >
+            <Text>FINISHED</Text>
+            <Box>
+              {project.CompletedDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}{" "}
+            </Box>
+          </Flex>
+        ) : (
+          <Flex
+            justify={"space-between"}
+            align={"center"}
+            border={"2px solid purple"}
+            gap={"10px"}
+            padding={"4px"}
+            fontSize={"20px"}
+            borderRadius={"99px"}
+            color={"purple"}
+          >
+            <Text>TARGET</Text>
+            <Box>
+              {project.TargetDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}{" "}
+            </Box>
+          </Flex>
+        )}
       </Flex>
 
       <Flex

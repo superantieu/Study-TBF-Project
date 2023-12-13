@@ -1,7 +1,8 @@
 import Scrollbars from "react-custom-scrollbars-2";
 
 import ProjectList from "./ProjectList";
-import projects from "../Data/projects";
+import projects from "../data/projects";
+import { Outlet } from "react-router-dom";
 
 const Projects = () => {
   return (

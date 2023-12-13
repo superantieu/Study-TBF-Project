@@ -173,7 +173,7 @@ const projectUsers8 = [
 ];
 const ongoingProject = [
   {
-    ProjectId: 1,
+    ProjectId: 6,
     ProjectName: "Empires",
     TotalHours: TimeSheet[5],
     StartDate: new Date(2023, 1, 17),
@@ -181,9 +181,10 @@ const ongoingProject = [
     ListMember: projectUsers6,
     Tasks: "20",
     Completion: "80",
+    CompletedDate: "",
   },
   {
-    ProjectId: 2,
+    ProjectId: 7,
     ProjectName: "Vinpearl",
     TotalHours: TimeSheet[6],
     StartDate: new Date(2023, 8, 17),
@@ -191,9 +192,10 @@ const ongoingProject = [
     ListMember: projectUsers7,
     Tasks: "15",
     Completion: "40",
+    CompletedDate: "",
   },
   {
-    ProjectId: 3,
+    ProjectId: 8,
     ProjectName: "NhaTrang",
     TotalHours: TimeSheet[7],
     StartDate: new Date(2023, 11, 17),
@@ -201,6 +203,7 @@ const ongoingProject = [
     ListMember: projectUsers8,
     Tasks: "10",
     Completion: "10",
+    CompletedDate: "",
   },
 ];
 export default ongoingProject;

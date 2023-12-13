@@ -15,22 +15,37 @@ import {
   InputLeftElement,
   Button,
   useOutsideClick,
+  Select,
 } from "@chakra-ui/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import SearchTable from "./SearchTable";
 
 const HeaderBar = () => {
   const [focus, setFocus] = useState(false);
   const ref = useRef();
+  const [inputValue, setInputValue] = useState("");
   const [searchvalue, setSearchvalue] = useState("");
   const handleChange = (e) => {
-    setSearchvalue(e.target.value);
+    setSearchvalue(e.target.value.toLowerCase());
+    setInputValue(e.target.value);
   };
+
   useOutsideClick({
     ref: ref,
-    handler: () => setFocus(false),
+    handler: () => {
+      setFocus(false);
+      setInputValue("");
+    },
   });
+  const [type, setType] = useState("member");
+  const handlleSelect = (e) => {
+    setType(e.target.value);
+  };
+  useEffect(() => {
+    setSearchvalue("");
+  }, [type]);
+
   return (
     <Flex w="full" h="60px" justify={"space-between"} align={"center"}>
       <Flex
@@ -49,7 +64,15 @@ const HeaderBar = () => {
       </Flex>
       <Box h={"full"} w={"500px"} padding={"10px"} mr={"20px"}>
         <Flex alignItems={"center"} justifyContent={"flex-end"} gap={"20px"}>
-          <InputGroup w={"250px"} position={"relative"} zIndex={99}>
+          <Flex align={"center"} minW={"350px"} justify={"flex-end"}>
+            <Text minW={"100px"}>Search Type</Text>
+            <Select w={"200px"} onChange={handlleSelect}>
+              <option value="member">Member</option>
+              <option value="complete">Completed Project</option>
+              <option value="ongoing">Ongoing Project</option>
+            </Select>
+          </Flex>
+          <InputGroup minW={"250px"} position={"relative"} zIndex={99}>
             <InputLeftElement>
               <Button backgroundColor={"transparent"}>
                 <Search2Icon />
@@ -59,6 +82,7 @@ const HeaderBar = () => {
               ref={ref}
               variant="outline"
               placeholder="Type here..."
+              value={inputValue}
               onFocus={() => setFocus(true)}
               onChange={handleChange}
             />
@@ -74,14 +98,14 @@ const HeaderBar = () => {
               boxShadow={"1px 1px 4px purple"}
               display={focus ? "block" : "none"}
             >
-              <SearchTable searchvalue={searchvalue} overflow={"hidden"} />
+              <SearchTable
+                searchvalue={searchvalue}
+                type={type}
+                overflow={"hidden"}
+              />
             </Box>
           </InputGroup>
-          <Box color={"white"} fontWeight={"bold"}>
-            <SupLink as={Link} to="/signin">
-              Sign In
-            </SupLink>
-          </Box>
+
           <SettingsIcon cursor={"pointer"} />
           <BellIcon fontSize={"20px"} cursor={"pointer"} />
         </Flex>
