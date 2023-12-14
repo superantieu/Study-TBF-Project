@@ -1,4 +1,4 @@
-const User = [
+const users = [
   {
     UserId: 1,
     FullName: "Luffy",
@@ -65,4 +65,4 @@ const User = [
     Discipline: "D",
   },
 ];
-export default User;
+export default users;

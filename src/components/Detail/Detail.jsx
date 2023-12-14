@@ -31,7 +31,8 @@ const UserDetail = () => {
       }
     });
   });
-
+  const jsonUser = JSON.stringify(User);
+  console.log(typeof jsonUser);
   return (
     <Scrollbars autoHide={true} autoHideTimeout={1000}>
       <Box mb={"10px"} fontSize={"20px"} fontWeight={"bold"}>
