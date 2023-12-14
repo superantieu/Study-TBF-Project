@@ -19,7 +19,7 @@ const CompletedDetail = () => {
       completeProject = [...completeProject, ongoing];
     }
   });
-  console.log(completeProject);
+
   return (
     <Scrollbars autoHide={true} autoHideTimeout={1000}>
       <ProjectList projects={completeProject} />

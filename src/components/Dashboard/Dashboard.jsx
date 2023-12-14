@@ -5,10 +5,14 @@ import { Divider, AbsoluteCenter } from "@chakra-ui/react";
 import TotalProjectChart from "../Charts/TotalProjectChart";
 import ExpectTimeChart from "../Charts/ExpectTimeChart";
 import OngoingProject from "./OngoingProject";
+import Filter from "../Filter/Filter";
 
 const Dashboard = () => {
   return (
     <Scrollbars autoHide={true} autoHideTimeout={1000}>
+      <Box>
+        <Filter />
+      </Box>
       <Box w={"full"} h={"full"} mt={"20px"}>
         <Box position="relative" padding="10">
           <Divider />

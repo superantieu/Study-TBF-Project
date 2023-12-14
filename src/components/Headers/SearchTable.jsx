@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { Box, Flex, Link as SupLink } from "@chakra-ui/react";
+import { Flex, Link as SupLink } from "@chakra-ui/react";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import { useEffect } from "react";
 
 import projects from "../data/projects";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import User from "../data/users";
 import ongoingProject from "../data/ongoing";
 

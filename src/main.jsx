@@ -14,6 +14,7 @@ import Projects from "./components/Projects/Projects.jsx";
 import OngoingProjectDetail from "./components/OngoingProjects/OngoingProjectDetail.jsx";
 import UserDetail from "./components/Detail/Detail.jsx";
 import CompletedDetail from "./components/Detail/CompletedDetail.jsx";
+import TeamProject from "./components/Detail/TeamProject.jsx";
 // import Detail from "./components/Detail/Detail.jsx";
 
 // const HomePage = lazy(() => import("./pages/Home.page.tsx"));
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense>
             <UserDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/discipline/:name",
+        element: (
+          <Suspense>
+            <TeamProject />
           </Suspense>
         ),
       },
