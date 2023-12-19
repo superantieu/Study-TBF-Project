@@ -30,6 +30,13 @@ const ContributeByTask = (props) => {
     },
     xaxis: {
       categories: Object.keys(taskhour),
+      labels: {
+        style: {
+          colors: Object.keys(taskhour).map(() => {
+            return "#e7dede";
+          }),
+        },
+      },
       position: "bottom",
       axisBorder: {
         show: false,
@@ -55,13 +62,15 @@ const ContributeByTask = (props) => {
     },
     yaxis: {
       axisBorder: {
-        show: false,
+        show: true,
+        color: "#e7dede",
       },
       title: {
         text: "Working time (hours)",
         style: {
           fontSize: "14px",
           fontWeight: "bold",
+          color: "#e7dede",
         },
       },
       axisTicks: {
@@ -71,6 +80,9 @@ const ContributeByTask = (props) => {
         show: true,
         formatter: function (val) {
           return val;
+        },
+        style: {
+          colors: "#e7dede",
         },
       },
     },

@@ -4,7 +4,7 @@ const Contribution = (props) => {
   const { teams } = props;
   return (
     <Flex w={"50%"} flexDirection={"column"} align={"center"}>
-      <Text fontWeight={"bold"} fontSize={"20px"}>
+      <Text fontWeight={"bold"} fontSize={"20px"} color={"#e7dede"}>
         MEMBERS PARTICIPATING IN THE PROJECT
       </Text>
       <Flex
@@ -17,11 +17,11 @@ const Contribution = (props) => {
         {Object.keys(teams).map((tName) => (
           <Box
             w={"30%"}
-            border={"4px double purple"}
+            border={"4px double #e7dede"}
             mt={"10px"}
             mb={"10px"}
             padding={"10px"}
-            color={"purple"}
+            color={"#e7dede"}
             key={tName}
             minWidth={"150px"}
           >

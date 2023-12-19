@@ -1,6 +1,6 @@
 import ReactApexChart from "react-apexcharts";
 
-import projects from "../Data/projects";
+import projects from "../data/projects";
 
 const memb = projects.map((obj, index) => {
   return obj.ListMember.length;
@@ -47,13 +47,26 @@ const TotalProjectChart = () => {
       offsetX: 10,
       style: {
         fontSize: "16px",
+        color: "#fff",
       },
     },
-    colors: ["#008FFB", "#892494"],
+    colors: ["#008FFB", "#ffff00"],
+    legend: {
+      labels: {
+        colors: "#fff",
+      },
+    },
     xaxis: {
       categories: projects.map((obj) => {
         return obj.ProjectName;
       }),
+      labels: {
+        style: {
+          colors: projects.map((obj) => {
+            return "#fff";
+          }),
+        },
+      },
     },
     yaxis: [
       {
@@ -88,17 +101,17 @@ const TotalProjectChart = () => {
         },
         axisBorder: {
           show: true,
-          color: "#892494",
+          color: "yellow",
         },
         labels: {
           style: {
-            colors: "#892494",
+            colors: "yellow",
           },
         },
         title: {
           text: "Number of Participants",
           style: {
-            color: "#892494",
+            color: "yellow",
             fontSize: "14px",
           },
         },

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ProjectList from "../Projects/ProjectList";
 import projects from "../data/projects";
 import ongoingProject from "../data/ongoing";
+import RenderThumb from "../../scrollbar/RenderThumb.jsx";
 
 const CompletedDetail = () => {
   const params = useParams();
@@ -21,7 +22,12 @@ const CompletedDetail = () => {
   });
 
   return (
-    <Scrollbars autoHide={true} autoHideTimeout={1000}>
+    <Scrollbars
+      autoHide={true}
+      autoHideTimeout={1000}
+      style={{ backgroundColor: "#272a2f" }}
+      renderThumbVertical={RenderThumb}
+    >
       <ProjectList projects={completeProject} />
     </Scrollbars>
   );

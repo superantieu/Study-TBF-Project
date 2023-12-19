@@ -30,6 +30,13 @@ const ContributeByPerson = (props) => {
     },
     xaxis: {
       categories: Object.keys(personhour),
+      labels: {
+        style: {
+          colors: Object.keys(personhour).map(() => {
+            return "#e7dede";
+          }),
+        },
+      },
       position: "bottom",
       axisBorder: {
         show: false,
@@ -54,23 +61,28 @@ const ContributeByPerson = (props) => {
       },
     },
     yaxis: {
-      axisBorder: {
-        show: false,
-      },
       title: {
         text: "Working time (hours)",
         style: {
           fontSize: "14px",
           fontWeight: "bold",
+          color: "#e7dede",
         },
       },
       axisTicks: {
         show: true,
       },
+      axisBorder: {
+        show: true,
+        color: "#e7dede",
+      },
       labels: {
         show: true,
         formatter: function (val) {
           return val;
+        },
+        style: {
+          colors: "#e7dede",
         },
       },
     },

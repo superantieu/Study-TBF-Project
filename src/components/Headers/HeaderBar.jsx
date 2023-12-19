@@ -20,6 +20,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 
 import SearchTable from "./SearchTable";
+import Filter from "../Filter/Filter";
 
 const HeaderBar = () => {
   const [focus, setFocus] = useState(false);
@@ -47,34 +48,57 @@ const HeaderBar = () => {
   }, [type]);
 
   return (
-    <Flex w="full" h="60px" justify={"space-between"} align={"center"}>
+    <Flex
+      w="full"
+      h="60px"
+      justify={"space-between"}
+      align={"center"}
+      borderBottom={"1px solid #fff"}
+      bg={"#272a2f"}
+    >
       <Flex
         padding={"10px"}
         h={"full"}
-        w={"240px"}
+        minW={"400px"}
         justify={"center"}
         align={"center"}
+        gap={"5px"}
       >
-        <MoonIcon fontSize={"24px"} color={"purple"} />
+        <MoonIcon fontSize={"24px"} color={"red.500"} />
         <SupLink as={Link} to="/" _hover={"none"}>
-          <Text fontSize={"20px"} color={"black"} padding={"10px"}>
+          <Text fontSize={"20px"} color={"white"} padding={"10px"}>
             Super Antieu
           </Text>
         </SupLink>
+        <Box minW={"400px"}>
+          <Filter />
+        </Box>
       </Flex>
       <Box h={"full"} w={"500px"} padding={"10px"} mr={"20px"}>
         <Flex alignItems={"center"} justifyContent={"flex-end"} gap={"20px"}>
           <Flex align={"center"} minW={"350px"} justify={"flex-end"}>
-            <Text minW={"100px"}>Search Type</Text>
-            <Select w={"200px"} onChange={handlleSelect}>
+            <Text minW={"100px"} color={"#fff"}>
+              Search Type
+            </Text>
+            <Select
+              w={"200px"}
+              onChange={handlleSelect}
+              color={"#000"}
+              bgColor={"#e7dede"}
+            >
               <option value="member">Member</option>
               <option value="complete">Completed Project</option>
               <option value="ongoing">Ongoing Project</option>
             </Select>
           </Flex>
-          <InputGroup minW={"250px"} position={"relative"} zIndex={99}>
+          <InputGroup
+            minW={"250px"}
+            position={"relative"}
+            zIndex={99}
+            color={"#fff"}
+          >
             <InputLeftElement>
-              <Button backgroundColor={"transparent"}>
+              <Button backgroundColor={"transparent"} color={"#fff"}>
                 <Search2Icon />
               </Button>
             </InputLeftElement>
@@ -90,12 +114,9 @@ const HeaderBar = () => {
             <Box
               w={"250px"}
               h={"250px"}
-              bg={"white"}
               position={"absolute"}
               top={"50px"}
               left={0}
-              borderRadius={"10px"}
-              boxShadow={"1px 1px 4px purple"}
               display={focus ? "block" : "none"}
             >
               <SearchTable
@@ -106,8 +127,8 @@ const HeaderBar = () => {
             </Box>
           </InputGroup>
 
-          <SettingsIcon cursor={"pointer"} />
-          <BellIcon fontSize={"20px"} cursor={"pointer"} />
+          <SettingsIcon cursor={"pointer"} color={"#fff"} />
+          <BellIcon fontSize={"20px"} cursor={"pointer"} color={"#fff"} />
         </Flex>
       </Box>
     </Flex>

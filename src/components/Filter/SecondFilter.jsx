@@ -9,7 +9,6 @@ import groupbykey from "../../utility/groupbykey";
 const SecondFilter = (props) => {
   const { select } = props;
   const teams = groupbykey(User, "Discipline");
-  console.log(teams);
   const navigate = useNavigate();
   const handleChange = (e) => {
     const selectChange = e.target.value;
@@ -68,8 +67,10 @@ const SecondFilter = (props) => {
     <Select
       placeholder="..."
       onChange={handleChange}
-      minW={"200pxs"}
+      minW={"200px"}
       maxW={"200px"}
+      color={"#000"}
+      bgColor={"#e7dede"}
     >
       {filterResult}
     </Select>

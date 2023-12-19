@@ -6,7 +6,7 @@ const ProjectList = (props) => {
   const { projects } = props;
 
   return (
-    <Box>
+    <Box mt={"5px"} mb={"5[x"}>
       {projects.map((project) => (
         <ProjectDetail key={project.ProjectId} project={project} />
       ))}

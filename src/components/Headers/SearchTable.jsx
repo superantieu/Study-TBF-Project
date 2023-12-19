@@ -57,7 +57,14 @@ const SearchTable = (props) => {
 
   useEffect(() => {}, [searchvalue]);
   return (
-    <Scrollbars autoHide={true} autoHideTimeout={1000}>
+    <Scrollbars
+      autoHide={true}
+      autoHideTimeout={1000}
+      style={{
+        backgroundColor: "#5f5a5a",
+        borderRadius: "0 0 10px 10px",
+      }}
+    >
       <Flex flexDirection={"column"} padding={"8px"}>
         {value.map((arr, index) => (
           <SupLink

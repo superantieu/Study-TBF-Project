@@ -12,6 +12,11 @@ const ContributeChart = (props) => {
     labels: Object.keys(totalhour).map((arr) => {
       return "team " + arr;
     }),
+    legend: {
+      labels: {
+        colors: "#e7dede",
+      },
+    },
     responsive: [
       {
         breakpoint: 480,

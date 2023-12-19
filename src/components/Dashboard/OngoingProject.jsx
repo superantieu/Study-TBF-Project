@@ -13,7 +13,7 @@ import {
   AbsoluteCenter,
 } from "@chakra-ui/react";
 
-import ongoingProject from "../Data/ongoing";
+import ongoingProject from "../data/ongoing";
 
 const list = ongoingProject;
 const OngoingProject = () => {
@@ -22,7 +22,7 @@ const OngoingProject = () => {
       <Box position="relative" padding="10">
         <Divider />
         <AbsoluteCenter
-          bg="purple"
+          bg="red.500"
           color={"white"}
           px="8"
           borderRadius={"99px"}
@@ -31,15 +31,17 @@ const OngoingProject = () => {
         </AbsoluteCenter>
       </Box>
       <TableContainer mr={"20px"}>
-        <Table variant={"striped"} colorScheme="blue">
+        <Table variant={"striped"} colorScheme="whiteAlpha" color={"#fff"}>
           <Thead>
             <Tr>
-              <Th>Project</Th>
-              <Th>Startdate</Th>
-              <Th>Targetdate</Th>
-              <Th>Members</Th>
-              <Th>Tasks</Th>
-              <Th textAlign={"center"}>Completion</Th>
+              <Th color={"red.300"}>Project</Th>
+              <Th color={"red.300"}>Startdate</Th>
+              <Th color={"red.300"}>Targetdate</Th>
+              <Th color={"red.300"}>Members</Th>
+              <Th color={"red.300"}>Tasks</Th>
+              <Th textAlign={"center"} color={"red.300"}>
+                Completion
+              </Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -65,7 +67,7 @@ const OngoingProject = () => {
                 <Td padding={"4px"} textAlign={"center"}>
                   <CircularProgress
                     value={arr.Completion}
-                    color="purple.400"
+                    color="red.400"
                     size={"46px"}
                   >
                     <CircularProgressLabel>

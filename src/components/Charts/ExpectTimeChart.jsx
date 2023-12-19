@@ -1,6 +1,6 @@
 import ReactApexChart from "react-apexcharts";
 
-import projects from "../Data/projects";
+import projects from "../data/projects";
 
 const ExpectTimeChart = () => {
   const target = projects.map((obj) => {
@@ -18,7 +18,7 @@ const ExpectTimeChart = () => {
               (1000 * 24 * 3660)
           ),
           strokeHeight: 5,
-          strokeColor: "#775DD0",
+          strokeColor: "#e53e3e",
         },
       ],
     };
@@ -42,6 +42,7 @@ const ExpectTimeChart = () => {
       align: "center",
       style: {
         fontSize: "16px",
+        color: "#fff",
       },
     },
     plotOptions: {
@@ -54,30 +55,43 @@ const ExpectTimeChart = () => {
       enabled: false,
     },
     legend: {
+      labels: {
+        colors: "#fff",
+      },
       show: true,
       showForSingleSeries: true,
       customLegendItems: ["Actual", "Target Time"],
       markers: {
-        fillColors: ["#00E396", "#775DD0"],
+        fillColors: ["#00E396", "#e53e3e"],
       },
     },
+    xaxis: {
+      labels: {
+        style: {
+          colors: projects.map((obj) => {
+            return "#fff";
+          }),
+        },
+      },
+    },
+
     yaxis: {
       axisTicks: {
         show: true,
       },
       axisBorder: {
         show: true,
-        color: "#008FFB",
+        color: "#fff",
       },
       labels: {
         style: {
-          colors: "#008FFB",
+          colors: "#fff",
         },
       },
       title: {
         text: "Time (days)",
         style: {
-          color: "#008FFB",
+          color: "#fff",
           fontSize: "14px",
         },
       },

@@ -1,10 +1,11 @@
 import Scrollbars from "react-custom-scrollbars-2";
 import { useParams } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 import ProjectList from "../Projects/ProjectList";
 import projects from "../data/projects";
 import ongoingProject from "../data/ongoing";
+import RenderThumb from "../../scrollbar/RenderThumb.jsx";
 
 const TeamProject = () => {
   const params = useParams();
@@ -29,10 +30,22 @@ const TeamProject = () => {
   });
   console.log(teamProject);
   return (
-    <Scrollbars autoHide={true} autoHideTimeout={1000}>
-      <Box mb={"10px"} fontSize={"20px"} fontWeight={"bold"}>
+    <Scrollbars
+      autoHide={true}
+      autoHideTimeout={1000}
+      style={{ backgroundColor: "#272a2f" }}
+      renderThumbVertical={RenderThumb}
+    >
+      <Flex
+        mb={"10px"}
+        fontSize={"20px"}
+        fontWeight={"bold"}
+        align={"center"}
+        justify={"center"}
+        color={"#e7dede"}
+      >
         PROJECTS IN WHICH TEAM {params.name} PARTICIPATES
-      </Box>
+      </Flex>
       <ProjectList projects={teamProject} />
     </Scrollbars>
   );

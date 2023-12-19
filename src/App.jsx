@@ -7,10 +7,7 @@ import FooterBar from "./components/Footers/FooterBar.jsx";
 
 function App() {
   return (
-    <Box
-      bg={"linear-gradient(to right, #c9ffbf, #ffafbd);"}
-      overflowX={"hidden"}
-    >
+    <Box bg={"#000"} overflowX={"hidden"}>
       <HeaderBar />
 
       <Flex

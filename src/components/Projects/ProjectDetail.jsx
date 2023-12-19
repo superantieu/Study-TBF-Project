@@ -52,7 +52,8 @@ const ProjectDetail = (props) => {
       <Flex
         w={"full"}
         h={"50px"}
-        bg={"linear-gradient(135deg, #8BC6EC 50%, #9599E2 100%)"}
+        bg={"#404040"}
+        color={"#fff"}
         align={"center"}
         fontSize={"24px"}
         padding={"10px"}
@@ -63,12 +64,12 @@ const ProjectDetail = (props) => {
         <Flex
           justify={"space-between"}
           align={"center"}
-          border={"2px solid purple"}
+          border={"2px solid #e7dede"}
           gap={"10px"}
           padding={"4px"}
           fontSize={"20px"}
           borderRadius={"99px"}
-          color={"purple"}
+          color={"#e7dede"}
         >
           <Text>USED</Text>
           <Box>
@@ -82,12 +83,12 @@ const ProjectDetail = (props) => {
         <Flex
           justify={"space-between"}
           align={"center"}
-          border={"2px solid purple"}
+          border={"2px solid #e7dede"}
           gap={"10px"}
           padding={"4px"}
           fontSize={"20px"}
           borderRadius={"99px"}
-          color={"purple"}
+          color={"#e7dede"}
         >
           <Text>STARTED</Text>
           <Box>
@@ -102,12 +103,12 @@ const ProjectDetail = (props) => {
           <Flex
             justify={"space-between"}
             align={"center"}
-            border={"2px solid purple"}
+            border={"2px solid #e7dede"}
             gap={"10px"}
             padding={"4px"}
             fontSize={"20px"}
             borderRadius={"99px"}
-            color={"purple"}
+            color={"#e7dede"}
           >
             <Text>FINISHED</Text>
             <Box>
@@ -122,12 +123,12 @@ const ProjectDetail = (props) => {
           <Flex
             justify={"space-between"}
             align={"center"}
-            border={"2px solid purple"}
+            border={"2px solid #e7dede"}
             gap={"10px"}
             padding={"4px"}
             fontSize={"20px"}
             borderRadius={"99px"}
-            color={"purple"}
+            color={"#e7dede"}
           >
             <Text>TARGET</Text>
             <Box>
@@ -163,7 +164,7 @@ const ProjectDetail = (props) => {
             bg={"transparent"}
             onClick={() => setIsSelectOpen(true)}
           >
-            <HamburgerIcon />
+            <HamburgerIcon color={"#e7dede"} />
           </Button>
           <Select
             ref={ref}
@@ -173,7 +174,7 @@ const ProjectDetail = (props) => {
             right={0}
             top={"20px"}
             bg={"#c9d2dd"}
-            border={"1px solid purple"}
+            border={"1px solid #e7dede"}
             w={"110px"}
             height={"30px"}
             zIndex={"2"}
@@ -196,6 +197,7 @@ const ProjectDetail = (props) => {
               fontWeight={"bold"}
               fontSize={"20PX"}
               alignSelf={"center"}
+              color={"#e7dede"}
             >
               THE CONTRIBUTION (HOURS)
             </Text>
