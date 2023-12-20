@@ -17,8 +17,17 @@ const SideBar = () => {
     setActive(path);
   };
   return (
-    <Box h={"calc(100dvh - 120px)"} bg={"#272a2f"} padding={"10px"} ml={"10px"}>
-      <Stack direction="column" mb="100px" w="full" h="full" gap={"12px"}>
+    <Box h={"calc(100dvh - 120px)"} padding={"15px 0"}>
+      <Stack
+        direction="column"
+        mb="100px"
+        w="full"
+        gap={"12px"}
+        h={"full"}
+        borderRadius={"20px"}
+        p={"10px"}
+        bg={"linear-gradient(0deg,  transparent, #272a2f 75%)}"}
+      >
         {arrayNameRoute.map((rou) => {
           return (
             <SupLink as={Link} key={rou.path} to={rou.path}>
@@ -29,12 +38,12 @@ const SideBar = () => {
                 justifyContent="flex-start"
                 alignItems="center"
                 backgroundColor={"transparent"}
-                border={"1px solid red.500"}
+                border={"1px solid red.400"}
                 color={"#fff"}
                 h={"40px"}
                 borderRadius="15px"
                 w="100%"
-                boxShadow="1px 1px 2px red"
+                boxShadow="1px 1px 2px #e53e3e"
                 _active={{
                   bg: "red.500",
                   color: "white",

@@ -4,10 +4,14 @@ import {
   Divider,
   Flex,
   Select,
+  Stack,
   Text,
   useOutsideClick,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { IoTimer } from "react-icons/io5";
+import { LuAlignHorizontalJustifyStart } from "react-icons/lu";
+import { GiFinishLine, GiTargetShot } from "react-icons/gi";
 import { useState, useRef } from "react";
 
 import groupbykey from "../../utility/groupbykey";
@@ -62,82 +66,155 @@ const ProjectDetail = (props) => {
       </Flex>
       <Flex justify={"flex-start"} gap={"20px"} mt={"20px"}>
         <Flex
+          ml={"10px"}
           justify={"space-between"}
           align={"center"}
           border={"2px solid #e7dede"}
-          gap={"10px"}
+          minW={"300px"}
+          h={"80px"}
           padding={"4px"}
           fontSize={"20px"}
-          borderRadius={"99px"}
+          borderRadius={"20px"}
           color={"#e7dede"}
+          bg={"#060d16"}
         >
-          <Text>USED</Text>
-          <Box>
-            {totalHours.reduce(
-              (accumulator, currentValue) => accumulator + currentValue,
-              0
-            )}{" "}
-            HOURS{" "}
-          </Box>
+          <Stack gap={0} ml={"6px"}>
+            <Text fontSize={"20px"} color={"#8b8f93"}>
+              Used
+            </Text>
+            <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+              {totalHours.reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+                0
+              )}{" "}
+              HOURS{" "}
+            </Box>
+          </Stack>
+          <Flex
+            w={"50px"}
+            h={"50px"}
+            mr={"10px"}
+            bg={"red.500"}
+            align={"center"}
+            justify={"center"}
+            borderRadius={"15px"}
+          >
+            <IoTimer fontSize={"36px"} />
+          </Flex>
         </Flex>
         <Flex
+          ml={"10px"}
           justify={"space-between"}
           align={"center"}
           border={"2px solid #e7dede"}
-          gap={"10px"}
+          minW={"300px"}
+          h={"80px"}
           padding={"4px"}
           fontSize={"20px"}
-          borderRadius={"99px"}
+          borderRadius={"20px"}
           color={"#e7dede"}
+          bg={"#060d16"}
         >
-          <Text>STARTED</Text>
-          <Box>
-            {project.StartDate.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}{" "}
-          </Box>
-        </Flex>
-        {project.CompletedDate ? (
-          <Flex
-            justify={"space-between"}
-            align={"center"}
-            border={"2px solid #e7dede"}
-            gap={"10px"}
-            padding={"4px"}
-            fontSize={"20px"}
-            borderRadius={"99px"}
-            color={"#e7dede"}
-          >
-            <Text>FINISHED</Text>
-            <Box>
-              {project.CompletedDate.toLocaleDateString("en-US", {
+          <Stack gap={0} ml={"6px"}>
+            <Text fontSize={"20px"} color={"#8b8f93"}>
+              Started
+            </Text>
+            <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+              {project.StartDate.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
               })}{" "}
             </Box>
+          </Stack>
+          <Flex
+            w={"50px"}
+            h={"50px"}
+            mr={"10px"}
+            bg={"red.500"}
+            align={"center"}
+            justify={"center"}
+            borderRadius={"15px"}
+          >
+            <LuAlignHorizontalJustifyStart fontSize={"36px"} />
+          </Flex>
+        </Flex>
+
+        {project.CompletedDate ? (
+          <Flex
+            ml={"10px"}
+            justify={"space-between"}
+            align={"center"}
+            border={"2px solid #e7dede"}
+            minW={"300px"}
+            h={"80px"}
+            padding={"4px"}
+            fontSize={"20px"}
+            borderRadius={"20px"}
+            color={"#e7dede"}
+            bg={"#060d16"}
+          >
+            <Stack gap={0} ml={"6px"}>
+              <Text fontSize={"20px"} color={"#8b8f93"}>
+                Finished
+              </Text>
+              <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+                {project.CompletedDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}{" "}
+              </Box>
+            </Stack>
+            <Flex
+              w={"50px"}
+              h={"50px"}
+              mr={"10px"}
+              bg={"red.500"}
+              align={"center"}
+              justify={"center"}
+              borderRadius={"15px"}
+            >
+              <GiFinishLine fontSize={"36px"} />
+            </Flex>
           </Flex>
         ) : (
           <Flex
+            ml={"10px"}
             justify={"space-between"}
             align={"center"}
             border={"2px solid #e7dede"}
-            gap={"10px"}
+            minW={"300px"}
+            h={"80px"}
             padding={"4px"}
             fontSize={"20px"}
-            borderRadius={"99px"}
+            borderRadius={"20px"}
             color={"#e7dede"}
+            bg={"#060d16"}
           >
-            <Text>TARGET</Text>
-            <Box>
-              {project.TargetDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-              })}{" "}
-            </Box>
+            <Stack gap={0} ml={"6px"}>
+              <Text fontSize={"20px"} color={"#8b8f93"}>
+                Target
+              </Text>
+              <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+                {project.TargetDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}{" "}
+              </Box>
+            </Stack>
+            <Flex
+              w={"50px"}
+              h={"50px"}
+              mr={"10px"}
+              bg={"red.500"}
+              align={"center"}
+              justify={"center"}
+              borderRadius={"15px"}
+            >
+              <GiTargetShot fontSize={"36px"} />
+            </Flex>
           </Flex>
         )}
       </Flex>
@@ -146,13 +223,19 @@ const ProjectDetail = (props) => {
         justify={"space-evenly"}
         align={"center"}
         gap={"40px"}
-        mr={"20px"}
-        mt={"40px"}
-        minHeight={"425px"}
+        m={"40px 20px 0"}
+        minHeight={"450px"}
       >
         <Contribution teams={teams} />
 
-        <Box w={"50%"} position={"relative"}>
+        <Box
+          w={"50%"}
+          position={"relative"}
+          bg={"#1a1d21"}
+          padding={"10px"}
+          borderRadius={"20px"}
+          border={"2px solid #7d7373"}
+        >
           <Button
             position={"absolute"}
             top={0}

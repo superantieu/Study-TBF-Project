@@ -13,6 +13,7 @@ const Contribution = (props) => {
         columnGap={"40px"}
         flexWrap={"wrap"}
         justify={"center"}
+        mt={"10px"}
       >
         {Object.keys(teams).map((tName) => (
           <Box

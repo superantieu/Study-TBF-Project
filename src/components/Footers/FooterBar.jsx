@@ -10,7 +10,7 @@ const FooterBar = () => {
       h="60px"
       justify={"space-between"}
       align={"center"}
-      borderTop={"1px solid #fff"}
+      borderTop={"1px solid #d3baba"}
       bg={"#272a2f"}
     >
       <Box>

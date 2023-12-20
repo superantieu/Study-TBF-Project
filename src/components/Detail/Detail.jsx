@@ -42,7 +42,8 @@ const UserDetail = () => {
       renderThumbVertical={RenderThumb}
     >
       <Flex
-        mb={"10px"}
+        mt={"20px"}
+        mb={"20px"}
         fontSize={"20px"}
         fontWeight={"bold"}
         align={"center"}

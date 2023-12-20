@@ -1,6 +1,6 @@
 import Scrollbars from "react-custom-scrollbars-2";
 import { useParams } from "react-router-dom";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import ProjectList from "../Projects/ProjectList";
 import projects from "../data/projects";
@@ -37,7 +37,8 @@ const TeamProject = () => {
       renderThumbVertical={RenderThumb}
     >
       <Flex
-        mb={"10px"}
+        mt={"20px"}
+        mb={"20px"}
         fontSize={"20px"}
         fontWeight={"bold"}
         align={"center"}

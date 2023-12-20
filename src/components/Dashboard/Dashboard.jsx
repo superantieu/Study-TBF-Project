@@ -42,7 +42,7 @@ const Dashboard = () => {
       }}
       renderThumbVertical={RenderThumb}
     >
-      <Box w={"full"} h={"full"} mt={"20px"}>
+      <Box w={"full"} h={"full"} mt={"20px"} mb={"20px"}>
         <Box position="relative" padding="10">
           <Divider borderColor={"red.500"} />
           <AbsoluteCenter
@@ -57,18 +57,20 @@ const Dashboard = () => {
         <Flex
           justify={"space-between"}
           align={"center"}
-          w={"full"}
+          // w={"full"}
           gap={"40px"}
+          ml={"20px"}
+          mr={"20px"}
         >
-          <Box w={"full"}>
+          <Box w={"full"} bg={"#08040459"} borderRadius={"20px"}>
             <TotalProjectChart />
           </Box>
-          <Box w="full">
+          <Box w="full" bg={"#08040459"} borderRadius={"20px"}>
             <ExpectTimeChart />
           </Box>
         </Flex>
 
-        <OngoingProject></OngoingProject>
+        <OngoingProject />
       </Box>
     </Scrollbars>
   );

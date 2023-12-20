@@ -53,7 +53,7 @@ const HeaderBar = () => {
       h="60px"
       justify={"space-between"}
       align={"center"}
-      borderBottom={"1px solid #fff"}
+      borderBottom={"1px solid #d3baba"}
       bg={"#272a2f"}
     >
       <Flex
