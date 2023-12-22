@@ -1,10 +1,22 @@
 import ReactApexChart from "react-apexcharts";
+import { Box, Tooltip as ChakraTooltip } from "@chakra-ui/react";
 
 import projects from "../data/projects";
+import groupbykey from "../../utility/groupbykey";
 
 const memb = projects.map((obj, index) => {
   return obj.ListMember.length;
 });
+const listMem = projects.map((obj) => {
+  var numberofteam = groupbykey(obj.ListMember, "Discipline");
+  return numberofteam;
+});
+const detailMember = listMem.map((array) => {
+  return Object.keys(array).map((arr) => {
+    return `team ${arr} : ${array[arr].length}`;
+  });
+});
+console.log(detailMember);
 const TotalProjectChart = () => {
   const series = [
     {
@@ -90,7 +102,7 @@ const TotalProjectChart = () => {
           },
         },
         tooltip: {
-          enabled: true,
+          enabled: false,
         },
       },
       {
@@ -123,11 +135,23 @@ const TotalProjectChart = () => {
     },
 
     tooltip: {
-      y: {
-        formatter: function (val) {
-          return val;
+      enabled: true,
+      shared: false,
+      y: [
+        "",
+        {
+          formatter: function (
+            value,
+            { series, seriesIndex, dataPointIndex, w }
+          ) {
+            const addingValue = detailMember[dataPointIndex].reduce(
+              (arr, cur) => arr + cur + `<br>`,
+              ""
+            );
+            return `  Total: ` + value + `<br>` + addingValue;
+          },
         },
-      },
+      ],
     },
   };
   return (

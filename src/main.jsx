@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
@@ -82,11 +82,25 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
+const customTheme = extendTheme({
+  styles: {
+    global: {
+      ".selectbox > option, .selectbox > optgroup": {
+        background: "#272a2f !important",
+      },
+      ".apexcharts-tooltip-y-group": {
+        display: "flex",
+        gap: "20px",
+        " align-items": "center",
+        "justify-content": "center",
+      },
+    },
+  },
+});
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={customTheme}>
         <RouterProvider router={router} fallbackElement={<LoadingPage />} />
       </ChakraProvider>
     </Provider>

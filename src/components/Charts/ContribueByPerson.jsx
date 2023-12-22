@@ -10,6 +10,20 @@ const ContributeByPerson = (props) => {
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: true,
+      },
+      toolbar: {
+        show: true,
+        tools: {
+          download: false,
+          // zoom: true,
+          zoomin: true,
+          zoomout: true,
+          pan: true,
+          reset: true,
+        },
+      },
     },
     plotOptions: {
       bar: {
@@ -30,6 +44,7 @@ const ContributeByPerson = (props) => {
     },
     xaxis: {
       categories: Object.keys(personhour),
+      tickPlacement: "on",
       labels: {
         style: {
           colors: Object.keys(personhour).map(() => {

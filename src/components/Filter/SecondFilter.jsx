@@ -67,10 +67,12 @@ const SecondFilter = (props) => {
     <Select
       placeholder="..."
       onChange={handleChange}
-      minW={"200px"}
-      maxW={"200px"}
-      color={"#000"}
-      bgColor={"#e7dede"}
+      color={"#fff"}
+      bgColor={"transparent"}
+      borderColor={"transparent"}
+      boxShadow="1px 1px 2px #e53e3e"
+      borderRadius={"15px"}
+      className="selectbox"
     >
       {filterResult}
     </Select>

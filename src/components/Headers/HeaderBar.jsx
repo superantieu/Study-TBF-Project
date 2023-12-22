@@ -70,67 +70,73 @@ const HeaderBar = () => {
             Super Antieu
           </Text>
         </SupLink>
-        <Box minW={"400px"}>
-          <Filter />
-        </Box>
       </Flex>
-      <Box h={"full"} w={"500px"} padding={"10px"} mr={"20px"}>
-        <Flex alignItems={"center"} justifyContent={"flex-end"} gap={"20px"}>
-          <Flex align={"center"} minW={"350px"} justify={"flex-end"}>
-            <Text minW={"100px"} color={"#fff"}>
-              Search Type
-            </Text>
-            <Select
-              w={"200px"}
-              onChange={handlleSelect}
-              color={"#000"}
-              bgColor={"#e7dede"}
-            >
-              <option value="member">Member</option>
-              <option value="complete">Completed Project</option>
-              <option value="ongoing">Ongoing Project</option>
-            </Select>
-          </Flex>
-          <InputGroup
-            minW={"250px"}
-            position={"relative"}
-            zIndex={99}
+      {/* <Box h={"full"} w={"500px"} padding={"10px"} mr={"20px"}> */}
+      <Flex alignItems={"center"} justifyContent={"flex-end"} gap={"20px"}>
+        <Flex align={"center"} minW={"350px"} justify={"flex-end"}>
+          <Box minW={"100px"} color={"#fff"}>
+            Search Type
+          </Box>
+          <Select
+            w={"200px"}
+            onChange={handlleSelect}
             color={"#fff"}
+            bgColor={"transparent"}
+            className="selectbox"
           >
-            <InputLeftElement>
-              <Button backgroundColor={"transparent"} color={"#fff"}>
-                <Search2Icon />
-              </Button>
-            </InputLeftElement>
-            <Input
-              ref={ref}
-              variant="outline"
-              placeholder="Type here..."
-              value={inputValue}
-              onFocus={() => setFocus(true)}
-              onChange={handleChange}
-            />
-
-            <Box
-              w={"250px"}
-              h={"250px"}
-              position={"absolute"}
-              top={"50px"}
-              left={0}
-              display={focus ? "block" : "none"}
-            >
-              <SearchTable
-                searchvalue={searchvalue}
-                type={type}
-                overflow={"hidden"}
-              />
-            </Box>
-          </InputGroup>
-
-          <SettingsIcon cursor={"pointer"} color={"#fff"} />
-          <BellIcon fontSize={"20px"} cursor={"pointer"} color={"#fff"} />
+            <option value="member">Member</option>
+            <option value="complete">Completed Project</option>
+            <option value="ongoing">Ongoing Project</option>
+          </Select>
         </Flex>
-      </Box>
+        <InputGroup
+          minW={"250px"}
+          position={"relative"}
+          zIndex={99}
+          color={"#fff"}
+        >
+          <InputLeftElement>
+            <Button backgroundColor={"transparent"} color={"#fff"}>
+              <Search2Icon />
+            </Button>
+          </InputLeftElement>
+          <Input
+            ref={ref}
+            variant="outline"
+            placeholder="Type here..."
+            value={inputValue}
+            onFocus={() => setFocus(true)}
+            onChange={handleChange}
+          />
+
+          <Box
+            w={"250px"}
+            h={"250px"}
+            position={"absolute"}
+            top={"50px"}
+            left={0}
+            display={focus ? "block" : "none"}
+          >
+            <SearchTable
+              searchvalue={searchvalue}
+              type={type}
+              overflow={"hidden"}
+            />
+          </Box>
+        </InputGroup>
+      </Flex>
+      {/* </Box> */}
+      <Flex
+        padding={"10px"}
+        h={"full"}
+        minW={"400px"}
+        justify={"center"}
+        align={"center"}
+        gap={"10px"}
+      >
+        <SettingsIcon cursor={"pointer"} color={"#fff"} />
+        <BellIcon fontSize={"20px"} cursor={"pointer"} color={"#fff"} />
+      </Flex>
     </Flex>
   );
 };

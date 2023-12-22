@@ -227,8 +227,8 @@ const projects = [
     ListMember: projectUsers1,
 
     StartDate: new Date(2023, 1, 17),
-    CompletedDate: new Date(2024, 6, 17),
-    TargetDate: new Date(2024, 5, 17),
+    CompletedDate: new Date(2023, 11, 17),
+    TargetDate: new Date(2023, 12, 17),
   },
   {
     ProjectId: 2,
@@ -238,9 +238,9 @@ const projects = [
     FloorAreas: 8000,
     ListMember: projectUsers2,
 
-    StartDate: new Date(2023, 2, 17),
-    CompletedDate: new Date(2024, 7, 17),
-    TargetDate: new Date(2024, 5, 27),
+    StartDate: new Date(2022, 2, 17),
+    CompletedDate: new Date(2023, 7, 17),
+    TargetDate: new Date(2023, 5, 27),
   },
   {
     ProjectId: 3,
@@ -251,8 +251,8 @@ const projects = [
     ListMember: projectUsers3,
 
     StartDate: new Date(2023, 3, 17),
-    CompletedDate: new Date(2024, 8, 17),
-    TargetDate: new Date(2024, 10, 7),
+    CompletedDate: new Date(2023, 12, 17),
+    TargetDate: new Date(2023, 10, 7),
   },
   {
     ProjectId: 4,
@@ -263,8 +263,8 @@ const projects = [
     ListMember: projectUsers4,
 
     StartDate: new Date(2023, 4, 17),
-    CompletedDate: new Date(2024, 9, 17),
-    TargetDate: new Date(2024, 11, 2),
+    CompletedDate: new Date(2023, 9, 17),
+    TargetDate: new Date(2023, 11, 2),
   },
   {
     ProjectId: 5,
@@ -274,9 +274,9 @@ const projects = [
     FloorAreas: 20000,
     ListMember: projectUsers5,
 
-    StartDate: new Date(2023, 5, 17),
-    CompletedDate: new Date(2024, 11, 17),
-    TargetDate: new Date(2024, 1, 17),
+    StartDate: new Date(2022, 5, 17),
+    CompletedDate: new Date(2023, 11, 17),
+    TargetDate: new Date(2023, 12, 17),
   },
 ];
 

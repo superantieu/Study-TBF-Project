@@ -21,7 +21,7 @@ const FooterBar = () => {
           color={"#fff"}
           fontSize={"20px"}
         >
-          Nothing gonna change my <FcLike fontSize={"20px"} /> for you!!!
+          Made by Hung with <FcLike fontSize={"20px"} />
         </Flex>
       </Box>
       <Flex align={"center"} gap={"20px"} mr={"40px"}>

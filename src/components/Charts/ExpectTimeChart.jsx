@@ -96,7 +96,7 @@ const ExpectTimeChart = () => {
         },
       },
       tooltip: {
-        enabled: true,
+        enabled: false,
       },
     },
   };

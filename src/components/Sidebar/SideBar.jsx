@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Link as SupLink,
   Box,
@@ -7,26 +7,29 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import { useState } from "react";
 
 import arrayNameRoute from "../data/arrayNameRoute";
+import Filter from "../Filter/Filter";
 
 const SideBar = () => {
-  const [active, setActive] = useState("/");
-  const handleClick = (path) => {
-    setActive(path);
-  };
+  const location = useLocation();
+
   return (
-    <Box h={"calc(100dvh - 120px)"} padding={"15px 0"}>
+    <Stack
+      h={"calc(100dvh - 120px)"}
+      padding={"15px 0"}
+      bg={"#272a2f"}
+      alignItems={""}
+      justifyContent={"space-between"}
+    >
       <Stack
         direction="column"
         mb="100px"
         w="full"
         gap={"12px"}
-        h={"full"}
         borderRadius={"20px"}
         p={"10px"}
-        bg={"linear-gradient(0deg,  transparent, #272a2f 75%)}"}
+        justify={"space-between"}
       >
         {arrayNameRoute.map((rou) => {
           return (
@@ -49,8 +52,7 @@ const SideBar = () => {
                   color: "white",
                   boxShadow: "none",
                 }}
-                isActive={active === rou.path}
-                onClick={() => handleClick(rou.path)}
+                isActive={location.pathname === rou.path}
               >
                 <Flex>
                   <Text my="auto" fontSize="sm">
@@ -62,7 +64,9 @@ const SideBar = () => {
           );
         })}
       </Stack>
-    </Box>
+
+      <Filter />
+    </Stack>
   );
 };
 
