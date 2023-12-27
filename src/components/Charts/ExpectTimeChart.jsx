@@ -7,36 +7,59 @@ const ExpectTimeChart = () => {
     return {
       x: obj.ProjectName,
       y: Math.round(
-        (obj.CompletedDate.getTime() - obj.StartDate.getTime()) /
+        (obj.TargetDate.getTime() - obj.StartDate.getTime()) /
           (1000 * 24 * 3660)
       ),
       goals: [
         {
-          name: "Target Time",
+          name: "Actual Time",
           value: Math.round(
-            (obj.TargetDate.getTime() - obj.StartDate.getTime()) /
+            (obj.CompletedDate.getTime() - obj.StartDate.getTime()) /
               (1000 * 24 * 3660)
           ),
-          strokeHeight: 5,
-          strokeColor: "#e53e3e",
+          strokeHeight: 6,
+          strokeColor: "#ebeb07",
         },
       ],
     };
   });
+
+  const overtarget = projects.map((obj) => {
+    return {
+      x: obj.ProjectName,
+      y:
+        Math.round(
+          (obj.CompletedDate.getTime() - obj.TargetDate.getTime()) /
+            (1000 * 24 * 3660)
+        ) > 0
+          ? Math.round(
+              (obj.CompletedDate.getTime() - obj.TargetDate.getTime()) /
+                (1000 * 24 * 3660)
+            )
+          : 0,
+    };
+  });
+
   const series = [
     {
-      name: "Actual",
+      name: "Target",
       data: target,
+    },
+    {
+      name: "Exceed",
+      data: overtarget,
     },
   ];
   const options = {
     chart: {
       height: 350,
+      stacked: true,
       type: "bar",
       toolbar: {
         show: false,
       },
     },
+
     title: {
       text: "PROJECT COMPLETION TIME",
       align: "center",
@@ -49,8 +72,13 @@ const ExpectTimeChart = () => {
       bar: {
         columnWidth: "60%",
       },
+      line: {
+        strokeWidth: 3, // Kích thước của vạch
+
+        showMarkers: false, // Ẩn điểm đánh dấu nếu không muốn hiển thị
+      },
     },
-    colors: ["#00E396"],
+    colors: ["#00E396", "#e53e3e"],
     dataLabels: {
       enabled: false,
     },
@@ -60,9 +88,9 @@ const ExpectTimeChart = () => {
       },
       show: true,
       showForSingleSeries: true,
-      customLegendItems: ["Actual", "Target Time"],
+      customLegendItems: ["Actual", "Exceed", "Target Time"],
       markers: {
-        fillColors: ["#00E396", "#e53e3e"],
+        fillColors: ["#ebeb07", "#e53e3e", "#00E396"],
       },
     },
     xaxis: {

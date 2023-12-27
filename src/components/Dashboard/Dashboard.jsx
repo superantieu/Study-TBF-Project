@@ -7,6 +7,7 @@ import TotalProjectChart from "../Charts/TotalProjectChart";
 import ExpectTimeChart from "../Charts/ExpectTimeChart";
 import OngoingProject from "./OngoingProject";
 import RenderThumb from "../../scrollbar/RenderThumb";
+import StatsOverall from "./StatsOverall";
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
@@ -61,7 +62,7 @@ const Dashboard = () => {
             <ExpectTimeChart />
           </Box>
         </Flex>
-
+        <StatsOverall />
         <OngoingProject />
       </Box>
     </Scrollbars>

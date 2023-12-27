@@ -45,7 +45,8 @@ const OngoingProject = () => {
                 <Th color={"red.300"}>Startdate</Th>
                 <Th color={"red.300"}>Targetdate</Th>
                 <Th color={"red.300"}>Members</Th>
-                <Th color={"red.300"}>Tasks</Th>
+                <Th color={"red.300"}>Used Hours</Th>
+                <Th color={"red.300"}>Target Hours</Th>
                 <Th textAlign={"center"} color={"red.300"}>
                   Completion
                 </Th>
@@ -70,7 +71,8 @@ const OngoingProject = () => {
                     })}
                   </Td>
                   <Td>{arr.ListMember.length}</Td>
-                  <Td>{arr.Tasks}</Td>
+                  <Td>1000 hours</Td>
+                  <Td>1000 hours</Td>
                   <Td padding={"4px"} textAlign={"center"}>
                     <CircularProgress
                       value={arr.Completion}

@@ -15,6 +15,8 @@ import OngoingProjectDetail from "./components/OngoingProjects/OngoingProjectDet
 import UserDetail from "./components/Detail/Detail.jsx";
 import CompletedDetail from "./components/Detail/CompletedDetail.jsx";
 import TeamProject from "./components/Detail/TeamProject.jsx";
+import ProjectGanttChart from "./components/GanttChartForOngoing/ProjectGanttChart.jsx";
+
 // import Detail from "./components/Detail/Detail.jsx";
 
 // const HomePage = lazy(() => import("./pages/Home.page.tsx"));
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense>
             <OngoingProjectDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/ganttchart",
+        element: (
+          <Suspense>
+            <ProjectGanttChart />
           </Suspense>
         ),
       },
@@ -93,6 +103,18 @@ const customTheme = extendTheme({
         gap: "20px",
         " align-items": "center",
         "justify-content": "center",
+      },
+      ".apexcharts-hidden-element-shown": {
+        transform: "translateY(-3px)",
+      },
+      // "._35nLX": {
+      //   fill: "#29292d",
+      // },
+      "._2dZTy:nth-of-type(2n)": {
+        fill: "#fff",
+      },
+      "._2dZTy:nth-of-type(2n+1)": {
+        fill: "#edf2f7",
       },
     },
   },

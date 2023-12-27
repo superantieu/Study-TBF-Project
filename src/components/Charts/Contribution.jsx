@@ -1,4 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import Scrollbars from "react-custom-scrollbars-2";
+
+import RenderThumb from "../../scrollbar/RenderThumb";
 
 const Contribution = (props) => {
   const { teams } = props;
@@ -25,18 +28,35 @@ const Contribution = (props) => {
             color={"#e7dede"}
             key={tName}
             minWidth={"150px"}
+            h={"150px"}
+            overflow={"hidden"}
           >
-            <Flex
-              flexDirection={"column"}
-              key={tName}
-              alignItems={"center"}
-              justifyContent={"center"}
+            <Scrollbars
+              autoHide={true}
+              autoHideTimeout={1000}
+              style={{
+                backgroundColor: "#272a2f",
+              }}
+              renderThumbVertical={RenderThumb}
             >
-              <Text fontWeight={"bold"}> TEAM {tName}</Text>
-              {teams[tName].map((user) => (
-                <Text key={user.UserId}>{user.FullName}</Text>
-              ))}
-            </Flex>
+              <Flex
+                flexDirection={"column"}
+                key={tName}
+                alignItems={"center"}
+                justifyContent={"center"}
+                // overflowY={"scroll"}
+              >
+                <Text fontWeight={"bold"}> TEAM {tName}</Text>
+                {teams[tName].map((user) => (
+                  <Text key={user.UserId}>{user.FullName}</Text>
+                ))}
+                <Text>Sup</Text>
+                <Text>Sup</Text>
+                <Text>Sup</Text>
+                <Text>Sup</Text>
+                <Text>Sup</Text>
+              </Flex>
+            </Scrollbars>
           </Box>
         ))}
       </Flex>

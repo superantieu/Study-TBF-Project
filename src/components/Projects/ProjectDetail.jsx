@@ -9,6 +9,7 @@ import {
   useOutsideClick,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { MdOutlineDateRange } from "react-icons/md";
 import { IoTimer } from "react-icons/io5";
 import { LuAlignHorizontalJustifyStart } from "react-icons/lu";
 import { GiFinishLine, GiTargetShot } from "react-icons/gi";
@@ -64,7 +65,7 @@ const ProjectDetail = (props) => {
       >
         {project.ProjectName.toUpperCase()}
       </Flex>
-      <Flex justify={"flex-start"} gap={"20px"} mt={"20px"}>
+      <Flex justify={"space-between"} mr={"10px"} gap={"20px"} mt={"20px"}>
         <Flex
           ml={"10px"}
           justify={"space-between"}
@@ -117,7 +118,7 @@ const ProjectDetail = (props) => {
         >
           <Stack gap={0} ml={"6px"}>
             <Text fontSize={"20px"} color={"#8b8f93"}>
-              Started
+              StartDate
             </Text>
             <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
               {project.StartDate.toLocaleDateString("en-US", {
@@ -156,7 +157,7 @@ const ProjectDetail = (props) => {
           >
             <Stack gap={0} ml={"6px"}>
               <Text fontSize={"20px"} color={"#8b8f93"}>
-                Finished
+                FinishDate
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
                 {project.CompletedDate.toLocaleDateString("en-US", {
@@ -194,7 +195,7 @@ const ProjectDetail = (props) => {
           >
             <Stack gap={0} ml={"6px"}>
               <Text fontSize={"20px"} color={"#8b8f93"}>
-                Target
+                TargetDate
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
                 {project.TargetDate.toLocaleDateString("en-US", {
@@ -202,6 +203,75 @@ const ProjectDetail = (props) => {
                   month: "2-digit",
                   day: "2-digit",
                 })}{" "}
+              </Box>
+            </Stack>
+            <Flex
+              w={"50px"}
+              h={"50px"}
+              mr={"10px"}
+              bg={"red.500"}
+              align={"center"}
+              justify={"center"}
+              borderRadius={"15px"}
+            >
+              <MdOutlineDateRange fontSize={"36px"} />
+            </Flex>
+          </Flex>
+        )}
+        {project.CompletedDate ? (
+          <Flex
+            ml={"10px"}
+            justify={"space-between"}
+            align={"center"}
+            border={"2px solid #e7dede"}
+            minW={"300px"}
+            h={"80px"}
+            padding={"4px"}
+            fontSize={"20px"}
+            borderRadius={"20px"}
+            color={"#e7dede"}
+            bg={"#060d16"}
+          >
+            <Stack gap={0} ml={"6px"}>
+              <Text fontSize={"20px"} color={"#8b8f93"}>
+                Target
+              </Text>
+              <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+                1000 Hours
+              </Box>
+            </Stack>
+            <Flex
+              w={"50px"}
+              h={"50px"}
+              mr={"10px"}
+              bg={"red.500"}
+              align={"center"}
+              justify={"center"}
+              borderRadius={"15px"}
+            >
+              <GiTargetShot fontSize={"36px"} />
+            </Flex>
+          </Flex>
+        ) : (
+          <Flex
+            ml={"10px"}
+            justify={"space-between"}
+            align={"center"}
+            border={"2px solid #e7dede"}
+            minW={"300px"}
+            h={"80px"}
+            padding={"4px"}
+            fontSize={"20px"}
+            borderRadius={"20px"}
+            color={"#e7dede"}
+            bg={"#060d16"}
+          >
+            <Stack gap={0} ml={"6px"}>
+              <Text fontSize={"20px"} color={"#8b8f93"}>
+                Target
+              </Text>
+              <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
+                1000 Hours
               </Box>
             </Stack>
             <Flex
