@@ -19,13 +19,13 @@ const TaskListHeader = ({ headerHeight, fontFamily, fontSize, rowWidth }) => {
       </Flex>
       <Flex align={"center"} justify={"space-between"}>
         <Text minW={"100"} maxWidth={"100px"} pl={"10px"}>
-          From
+          Start
         </Text>
         <Divider orientation="vertical" borderColor={"red.500"} h={"30px"} />
       </Flex>
 
       <Text minW={"100"} maxWidth={"100px"} pl={"10px"}>
-        To
+        Target
       </Text>
     </Flex>
   );

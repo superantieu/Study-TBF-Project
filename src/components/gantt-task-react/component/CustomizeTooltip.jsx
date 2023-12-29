@@ -36,8 +36,8 @@ const CustomizeTooltip = ({ task, fontSize, fontFamily }) => {
         {" day(s)"}
       </Text>
       <Text>{!!task.progress && `Progress: ${task.progress} %`}</Text>
-      <Text>Used: 1000 hours</Text>
-      <Text>Members: 20</Text>
+      <Text>Used: {task.totalhours}</Text>
+      <Text>Members: {task.member.length}</Text>
     </Stack>
   );
 };

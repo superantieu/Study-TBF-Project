@@ -16,6 +16,7 @@ import UserDetail from "./components/Detail/Detail.jsx";
 import CompletedDetail from "./components/Detail/CompletedDetail.jsx";
 import TeamProject from "./components/Detail/TeamProject.jsx";
 import ProjectGanttChart from "./components/GanttChartForOngoing/ProjectGanttChart.jsx";
+import OngoingGanttChart from "./components/GanttChartForOngoing/OngoingGanttChart.jsx";
 
 // import Detail from "./components/Detail/Detail.jsx";
 
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense>
             <ProjectGanttChart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/ongoingganttchart",
+        element: (
+          <Suspense>
+            <OngoingGanttChart />
           </Suspense>
         ),
       },

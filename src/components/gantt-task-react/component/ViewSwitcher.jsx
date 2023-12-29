@@ -8,8 +8,6 @@ export const ViewSwitcher = ({
   isChecked,
   view,
 }) => {
-  console.log(onViewModeChange);
-  console.log(view);
   return (
     <Flex align={"center"} justify={"flex-end"} gap={"10px"}>
       <Button

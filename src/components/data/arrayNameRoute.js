@@ -15,5 +15,9 @@ const arrayNameRoute = [
     name: "Gantt Chart",
     path: "/ganttchart",
   },
+  {
+    name: "On-going Gantt Chart",
+    path: "/ongoingganttchart",
+  },
 ];
 export default arrayNameRoute;

@@ -1,28 +1,47 @@
 import ReactApexChart from "react-apexcharts";
-import { Box, Tooltip as ChakraTooltip } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 
-import projects from "../data/projects";
 import groupbykey from "../../utility/groupbykey";
 
-const memb = projects.map((obj, index) => {
-  return obj.ListMember.length;
-});
-const listMem = projects.map((obj) => {
-  var numberofteam = groupbykey(obj.ListMember, "Discipline");
-  return numberofteam;
-});
-const detailMember = listMem.map((array) => {
-  return Object.keys(array).map((arr) => {
-    return `team ${arr} : ${array[arr].length}`;
-  });
-});
-console.log(detailMember);
 const TotalProjectChart = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5103/api/Projects?Completed=true&pageSize=50"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const results = await response.json();
+        setData(results.result);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(data);
+  const memb = data.map((obj) => {
+    return obj.members.length;
+  });
+  const listMem = data.map((obj) => {
+    var numberofteam = groupbykey(obj.members, "discipline");
+    return numberofteam;
+  });
+
+  const detailMember = listMem.map((array) => {
+    return Object.keys(array).map((arr) => {
+      return `team ${arr} : ${array[arr].length}`;
+    });
+  });
+  // console.log(detailMember);
   const series = [
     {
       name: "Floor Area",
-      data: projects.map((obj) => {
-        return obj.FloorAreas;
+      data: data.map((obj) => {
+        return obj.floorAreas;
       }),
     },
     {
@@ -69,12 +88,12 @@ const TotalProjectChart = () => {
       },
     },
     xaxis: {
-      categories: projects.map((obj) => {
-        return obj.ProjectName;
+      categories: data.map((obj) => {
+        return obj.projectName;
       }),
       labels: {
         style: {
-          colors: projects.map((obj) => {
+          colors: data.map((obj) => {
             return "#fff";
           }),
         },
@@ -154,6 +173,21 @@ const TotalProjectChart = () => {
       ],
     },
   };
+
+  // const memb = projects.map((obj, index) => {
+  //   return obj.ListMember.length;
+  // });
+  // const listMem = projects.map((obj) => {
+  //   var numberofteam = groupbykey(obj.ListMember, "Discipline");
+  //   return numberofteam;
+  // });
+  // const detailMember = listMem.map((array) => {
+  //   return Object.keys(array).map((arr) => {
+  //     return `team ${arr} : ${array[arr].length}`;
+  //   });
+  // });
+  // console.log(detailMember);
+
   return (
     <ReactApexChart options={options} series={series} type="bar" height={450} />
   );

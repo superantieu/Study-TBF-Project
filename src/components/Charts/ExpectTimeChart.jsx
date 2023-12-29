@@ -1,20 +1,41 @@
 import ReactApexChart from "react-apexcharts";
-
-import projects from "../data/projects";
+import { useState, useEffect } from "react";
 
 const ExpectTimeChart = () => {
-  const target = projects.map((obj) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5103/api/Projects?Completed=true&pageSize=50"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const results = await response.json();
+        setData(results.result);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const target = data.map((obj) => {
+    console.log(typeof obj.targetDate, new Date(obj.targetDate).getTime());
     return {
-      x: obj.ProjectName,
+      x: obj.projectName,
       y: Math.round(
-        (obj.TargetDate.getTime() - obj.StartDate.getTime()) /
+        (new Date(obj.targetDate).getTime() -
+          new Date(obj.startDate).getTime()) /
           (1000 * 24 * 3660)
       ),
       goals: [
         {
           name: "Actual Time",
           value: Math.round(
-            (obj.CompletedDate.getTime() - obj.StartDate.getTime()) /
+            (new Date(obj.completedDate).getTime() -
+              new Date(obj.startDate).getTime()) /
               (1000 * 24 * 3660)
           ),
           strokeHeight: 6,
@@ -24,16 +45,18 @@ const ExpectTimeChart = () => {
     };
   });
 
-  const overtarget = projects.map((obj) => {
+  const overtarget = data.map((obj) => {
     return {
-      x: obj.ProjectName,
+      x: obj.projectName,
       y:
         Math.round(
-          (obj.CompletedDate.getTime() - obj.TargetDate.getTime()) /
+          (new Date(obj.completedDate).getTime() -
+            new Date(obj.targetDate).getTime()) /
             (1000 * 24 * 3660)
         ) > 0
           ? Math.round(
-              (obj.CompletedDate.getTime() - obj.TargetDate.getTime()) /
+              (new Date(obj.completedDate).getTime() -
+                new Date(obj.targetDate).getTime()) /
                 (1000 * 24 * 3660)
             )
           : 0,
@@ -96,7 +119,7 @@ const ExpectTimeChart = () => {
     xaxis: {
       labels: {
         style: {
-          colors: projects.map((obj) => {
+          colors: data.map(() => {
             return "#fff";
           }),
         },
