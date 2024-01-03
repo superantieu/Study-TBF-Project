@@ -12,10 +12,6 @@ const arrayNameRoute = [
     path: "/ongoingproject",
   },
   {
-    name: "Gantt Chart",
-    path: "/ganttchart",
-  },
-  {
     name: "On-going Gantt Chart",
     path: "/ongoingganttchart",
   },

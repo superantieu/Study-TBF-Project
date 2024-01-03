@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 export function initTasks() {
   const [data, setData] = useState([]);
@@ -21,8 +21,6 @@ export function initTasks() {
     fetchData();
   }, []);
 
-  console.log(data);
-
   let rs = data.map((dt, index) => {
     return {
       start: new Date(dt.startDate),
@@ -39,25 +37,6 @@ export function initTasks() {
     };
   });
   console.log("rs", rs);
-  //   useLayoutEffect(() => {
-  //     const tasksData = data.map((dt, index) => {
-  //       return {
-  //         start: new Date(dt.startDate),
-  //         target: new Date(dt.targetDate),
-  //         name: dt.projectName,
-  //         id: dt.projectId,
-  //         progress: Math.round(
-  //           (100 * (new Date().getTime() - new Date(dt.startDate).getTime())) /
-  //             (new Date(dt.targetDate).getTime() -
-  //               new Date(dt.startDate).getTime())
-  //         ),
-  //         type: "project",
-  //         hideChildren: false,
-  //         displayOrder: index + 1, // Vị trí hàng trên gantt chart
-  //       };
-  //     });
-  //     setTasks(tasksData);
-  //   }, [data]);
 
   console.log(tasks);
   return tasks;

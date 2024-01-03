@@ -1,33 +1,15 @@
 import ReactApexChart from "react-apexcharts";
-import { useState, useEffect } from "react";
 
 import groupbykey from "../../utility/groupbykey";
 
-const TotalProjectChart = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5103/api/Projects?Completed=true&pageSize=50"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const results = await response.json();
-        setData(results.result);
-      } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  console.log(data);
+const TotalProjectChart = (props) => {
+  const { data } = props;
+
   const memb = data.map((obj) => {
-    return obj.members.length;
+    return obj.filterMembers.length;
   });
   const listMem = data.map((obj) => {
-    var numberofteam = groupbykey(obj.members, "discipline");
+    var numberofteam = groupbykey(obj.filterMembers, "discipline");
     return numberofteam;
   });
 
@@ -36,7 +18,7 @@ const TotalProjectChart = () => {
       return `team ${arr} : ${array[arr].length}`;
     });
   });
-  // console.log(detailMember);
+
   const series = [
     {
       name: "Floor Area",
@@ -173,20 +155,6 @@ const TotalProjectChart = () => {
       ],
     },
   };
-
-  // const memb = projects.map((obj, index) => {
-  //   return obj.ListMember.length;
-  // });
-  // const listMem = projects.map((obj) => {
-  //   var numberofteam = groupbykey(obj.ListMember, "Discipline");
-  //   return numberofteam;
-  // });
-  // const detailMember = listMem.map((array) => {
-  //   return Object.keys(array).map((arr) => {
-  //     return `team ${arr} : ${array[arr].length}`;
-  //   });
-  // });
-  // console.log(detailMember);
 
   return (
     <ReactApexChart options={options} series={series} type="bar" height={450} />

@@ -1,28 +1,8 @@
 import ReactApexChart from "react-apexcharts";
-import { useState, useEffect } from "react";
 
-const ExpectTimeChart = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5103/api/Projects?Completed=true&pageSize=50"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const results = await response.json();
-        setData(results.result);
-      } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+const ExpectTimeChart = (props) => {
+  const { data } = props;
   const target = data.map((obj) => {
-    console.log(typeof obj.targetDate, new Date(obj.targetDate).getTime());
     return {
       x: obj.projectName,
       y: Math.round(

@@ -1,6 +1,6 @@
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 
-import "../table.css";
+// import "../table.css";
 
 const CustomizeTooltip = ({ task, fontSize, fontFamily }) => {
   const style = {
@@ -36,7 +36,7 @@ const CustomizeTooltip = ({ task, fontSize, fontFamily }) => {
         {" day(s)"}
       </Text>
       <Text>{!!task.progress && `Progress: ${task.progress} %`}</Text>
-      <Text>Used: {task.totalhours}</Text>
+      <Text>TotalHours: {task.totalhours}</Text>
       <Text>Members: {task.member.length}</Text>
     </Stack>
   );

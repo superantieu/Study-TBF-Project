@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   useOutsideClick,
+  Spinner,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { MdOutlineDateRange } from "react-icons/md";
@@ -20,36 +21,51 @@ import Contribution from "../Charts/Contribution";
 import ContributeChart from "../Charts/ContributeChart";
 import ContributeByPerson from "../Charts/ContribueByPerson";
 import ContributeByTask from "../Charts/ContributeByTask";
+import { useGetTimeSheetQuery } from "../../services/ongoingApi";
 
 const ProjectDetail = (props) => {
   const { project } = props;
+  const users = project.filterMembers;
+  const teams = groupbykey(users, "discipline");
 
-  const users = project.ListMember;
-  const totalHours = Object.values(project.TotalHours.TSHours);
-  const teams = groupbykey(users, "Discipline");
-
+  const [contribute, setContribute] = useState("team");
   const ref = useRef();
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   useOutsideClick({
     ref: ref,
     handler: () => setIsSelectOpen(false),
   });
+  let tshours, tsperson;
+  const {
+    data: timeSheetData,
+    error,
+    isLoading,
+  } = useGetTimeSheetQuery({
+    ProjectId: project.projectId,
+    pageSize: 50,
+  });
 
-  const [contributechart, setContribute] = useState(
-    <ContributeChart totalhour={project.TotalHours.TSHours} />
-  );
+  if (!isLoading) {
+    tshours = timeSheetData.result.reduce((acc, cur) => {
+      var needHours = acc[cur["userDiscipline"]]
+        ? acc[cur["userDiscipline"]]
+        : 0;
+      acc[cur["userDiscipline"]] = needHours + cur["tshours"];
+      return acc;
+    }, {});
+
+    tsperson = timeSheetData.result.reduce((acc, cur) => {
+      project.filterMembers.map((mem) => {
+        if (cur.userId === mem.userId) {
+          return (acc[mem.fullName] = cur.tshours);
+        }
+      });
+      return acc;
+    }, {});
+  }
+
   const handleChart = (e) => {
-    e.target.value === "team"
-      ? setContribute(
-          <ContributeChart totalhour={project.TotalHours.TSHours} />
-        )
-      : e.target.value === "person"
-      ? setContribute(
-          <ContributeByPerson personhour={project.TotalHours.TSPerson} />
-        )
-      : setContribute(
-          <ContributeByTask taskhour={project.TotalHours.TSTasks} />
-        );
+    e.target.value === "team" ? setContribute("team") : setContribute("person");
   };
 
   return (
@@ -63,7 +79,7 @@ const ProjectDetail = (props) => {
         fontSize={"24px"}
         padding={"10px"}
       >
-        {project.ProjectName.toUpperCase()}
+        {project.projectName.toUpperCase()}
       </Flex>
       <Flex justify={"space-between"} mr={"10px"} gap={"20px"} mt={"20px"}>
         <Flex
@@ -84,11 +100,7 @@ const ProjectDetail = (props) => {
               Used
             </Text>
             <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-              {totalHours.reduce(
-                (accumulator, currentValue) => accumulator + currentValue,
-                0
-              )}{" "}
-              HOURS{" "}
+              {project.usedHours} HOURS{" "}
             </Box>
           </Stack>
           <Flex
@@ -121,7 +133,7 @@ const ProjectDetail = (props) => {
               StartDate
             </Text>
             <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-              {project.StartDate.toLocaleDateString("en-US", {
+              {new Date(project.startDate).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
@@ -141,7 +153,7 @@ const ProjectDetail = (props) => {
           </Flex>
         </Flex>
 
-        {project.CompletedDate ? (
+        {project.completedDate ? (
           <Flex
             ml={"10px"}
             justify={"space-between"}
@@ -160,7 +172,7 @@ const ProjectDetail = (props) => {
                 FinishDate
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-                {project.CompletedDate.toLocaleDateString("en-US", {
+                {new Date(project.completedDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "2-digit",
                   day: "2-digit",
@@ -198,7 +210,7 @@ const ProjectDetail = (props) => {
                 TargetDate
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-                {project.TargetDate.toLocaleDateString("en-US", {
+                {new Date(project.targetDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "2-digit",
                   day: "2-digit",
@@ -218,7 +230,7 @@ const ProjectDetail = (props) => {
             </Flex>
           </Flex>
         )}
-        {project.CompletedDate ? (
+        {project.completedDate ? (
           <Flex
             ml={"10px"}
             justify={"space-between"}
@@ -237,7 +249,7 @@ const ProjectDetail = (props) => {
                 Target
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-                1000 Hours
+                {project.totalHours} HOURS{" "}
               </Box>
             </Stack>
             <Flex
@@ -271,7 +283,7 @@ const ProjectDetail = (props) => {
                 Target
               </Text>
               <Box fontSize={"24px"} fontWeight={"bold"} color={"#b7b3b3"}>
-                1000 Hours
+                {project.totalHours} HOURS{" "}
               </Box>
             </Stack>
             <Flex
@@ -313,7 +325,7 @@ const ProjectDetail = (props) => {
             w={"40px"}
             height={"40px"}
             borderRadius={"50%"}
-            _hover={"none"}
+            _hover={{ bg: "transparent" }}
             bg={"transparent"}
             onClick={() => setIsSelectOpen(true)}
           >
@@ -336,15 +348,27 @@ const ProjectDetail = (props) => {
           >
             <option value="team">TEAM</option>
             <option value="person">PERSON</option>
-            <option value="task">TASK</option>
+            {/* <option value="task">TASK</option> */}
           </Select>
 
           <Flex
             flexDirection={"column"}
             align={"flex-start"}
             justify={"center"}
+            minH={"450px"}
+            maxH={"450px"}
           >
-            <Box w={"80%"}>{contributechart}</Box>
+            <Box w={"80%"}>
+              {isLoading ? (
+                <Flex align={"center"} justify={"center"} mt={"36px"}>
+                  <Spinner color="red.500" size="lg" />
+                </Flex>
+              ) : contribute === "team" ? (
+                <ContributeChart totalhour={tshours} />
+              ) : (
+                <ContributeByPerson personhour={tsperson} />
+              )}
+            </Box>
             <Text
               mt={"30px"}
               fontWeight={"bold"}

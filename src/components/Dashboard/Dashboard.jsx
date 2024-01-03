@@ -1,8 +1,7 @@
-import { Flex, Box } from "@chakra-ui/react";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { Divider, AbsoluteCenter } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Divider, AbsoluteCenter, Flex, Spinner, Box } from "@chakra-ui/react";
 
+import { useGetOngoingProjectQuery } from "../../services/ongoingApi";
 import TotalProjectChart from "../Charts/TotalProjectChart";
 import ExpectTimeChart from "../Charts/ExpectTimeChart";
 import OngoingProject from "./OngoingProject";
@@ -10,23 +9,21 @@ import RenderThumb from "../../scrollbar/RenderThumb";
 import StatsOverall from "./StatsOverall";
 
 const Dashboard = () => {
-  const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:5103/api/Projects");
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       const results = await response.json();
-  //       setData(results.result);
-  //     } catch (error) {
-  //       console.error("There was a problem with the fetch operation:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
+  const {
+    data: Projects,
+    error,
+    isLoading,
+  } = useGetOngoingProjectQuery({
+    Completed: true,
+    pageSize: 50,
+  });
+  if (isLoading) {
+    return (
+      <Flex align={"center"} justify={"center"} mt={"36px"}>
+        <Spinner color="red.500" size="lg" />
+      </Flex>
+    );
+  }
   return (
     <Scrollbars
       autoHide={true}
@@ -56,10 +53,10 @@ const Dashboard = () => {
           mr={"20px"}
         >
           <Box w={"full"} bg={"#08040459"} borderRadius={"20px"}>
-            <TotalProjectChart />
+            <TotalProjectChart data={Projects.result} />
           </Box>
           <Box w="full" bg={"#08040459"} borderRadius={"20px"}>
-            <ExpectTimeChart />
+            <ExpectTimeChart data={Projects.result} />
           </Box>
         </Flex>
         <StatsOverall />

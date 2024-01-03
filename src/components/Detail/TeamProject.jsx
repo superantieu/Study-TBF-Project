@@ -1,34 +1,27 @@
 import Scrollbars from "react-custom-scrollbars-2";
 import { useParams } from "react-router-dom";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spinner } from "@chakra-ui/react";
 
 import ProjectList from "../Projects/ProjectList";
-import projects from "../data/projects";
-import ongoingProject from "../data/ongoing";
 import RenderThumb from "../../scrollbar/RenderThumb.jsx";
+import { useGetOngoingProjectQuery } from "../../services/ongoingApi.js";
 
 const TeamProject = () => {
   const params = useParams();
-  let teamProject = [];
-  let findTeam;
-  projects.map((teampj) => {
-    findTeam = teampj.ListMember.find(
-      (team) => team.Discipline === params.name
+  const {
+    data: projectsByTeam,
+    error,
+    isLoading,
+  } = useGetOngoingProjectQuery({ Discipline: params.name, pageSize: 50 });
+  if (isLoading) {
+    return (
+      <Flex align={"center"} justify={"center"} mt={"36px"}>
+        <Spinner color="red.500" size="lg" />
+      </Flex>
     );
-    if (findTeam) {
-      teamProject = [...teamProject, teampj];
-    }
-  });
+  }
+  console.log("Sup", projectsByTeam.result);
 
-  ongoingProject.map((teampj) => {
-    findTeam = teampj.ListMember.find(
-      (team) => team.Discipline === params.name
-    );
-    if (findTeam) {
-      teamProject = [...teamProject, teampj];
-    }
-  });
-  console.log(teamProject);
   return (
     <Scrollbars
       autoHide={true}
@@ -47,7 +40,7 @@ const TeamProject = () => {
       >
         PROJECTS IN WHICH TEAM {params.name} PARTICIPATES
       </Flex>
-      <ProjectList projects={teamProject} />
+      <ProjectList projects={projectsByTeam.result} />
     </Scrollbars>
   );
 };

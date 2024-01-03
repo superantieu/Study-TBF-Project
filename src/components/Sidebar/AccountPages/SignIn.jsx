@@ -94,7 +94,7 @@ const SignIn = () => {
             <Text fontSize={"20px"} color={"gray"}>
               Don't have an account?
             </Text>
-            <SupLink as={Link} to="/signup" _hover={"none"}>
+            <SupLink as={Link} to="/signup" /* _hover={"none"} */>
               <Text
                 fontSize={"20px"}
                 color={"purple"}

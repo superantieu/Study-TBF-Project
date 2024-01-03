@@ -20,7 +20,6 @@ import {
 import { useState, useRef, useEffect } from "react";
 
 import SearchTable from "./SearchTable";
-import Filter from "../Filter/Filter";
 
 const HeaderBar = () => {
   const [focus, setFocus] = useState(false);
@@ -65,13 +64,12 @@ const HeaderBar = () => {
         gap={"5px"}
       >
         <MoonIcon fontSize={"24px"} color={"red.500"} />
-        <SupLink as={Link} to="/" _hover={"none"}>
+        <SupLink as={Link} to="/" _hover={{ bg: "transparent" }}>
           <Text fontSize={"20px"} color={"white"} padding={"10px"}>
             Super Antieu
           </Text>
         </SupLink>
       </Flex>
-      {/* <Box h={"full"} w={"500px"} padding={"10px"} mr={"20px"}> */}
       <Flex alignItems={"center"} justifyContent={"flex-end"} gap={"20px"}>
         <Flex align={"center"} minW={"350px"} justify={"flex-end"}>
           <Box minW={"100px"} color={"#fff"}>
@@ -125,7 +123,6 @@ const HeaderBar = () => {
           </Box>
         </InputGroup>
       </Flex>
-      {/* </Box> */}
       <Flex
         padding={"10px"}
         h={"full"}

@@ -8,7 +8,7 @@ const ProjectList = (props) => {
   return (
     <Box mt={"5px"} mb={"5[x"}>
       {projects.map((project) => (
-        <ProjectDetail key={project.ProjectId} project={project} />
+        <ProjectDetail key={project.projectId} project={project} />
       ))}
     </Box>
   );

@@ -7,9 +7,24 @@ import User from "../data/users";
 import projects from "../data/projects";
 import ongoingProject from "../data/ongoing";
 import RenderThumb from "../../scrollbar/RenderThumb.jsx";
+import { useGetOngoingProjectQuery } from "../../services/ongoingApi.js";
 
 const UserDetail = () => {
   const params = useParams();
+  const {
+    data: projectsByMember,
+    error,
+    isLoading,
+  } = useGetOngoingProjectQuery({ Discipline: params.id, pageSize: 50 });
+  if (isLoading) {
+    return (
+      <Flex align={"center"} justify={"center"} mt={"36px"}>
+        <Spinner color="red.500" size="lg" />
+      </Flex>
+    );
+  }
+  console.log("Sup", projectsByMember.result);
+
   let userProject = [];
   let name;
   User.map((user) => {

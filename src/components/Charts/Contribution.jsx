@@ -18,7 +18,7 @@ const Contribution = (props) => {
         justify={"center"}
         mt={"10px"}
       >
-        {Object.keys(teams).map((tName) => (
+        {Object.keys(teams).map((tName, index) => (
           <Box
             w={"30%"}
             border={"4px double #e7dede"}
@@ -26,7 +26,7 @@ const Contribution = (props) => {
             mb={"10px"}
             padding={"10px"}
             color={"#e7dede"}
-            key={tName}
+            key={index}
             minWidth={"150px"}
             h={"150px"}
             overflow={"hidden"}
@@ -41,20 +41,18 @@ const Contribution = (props) => {
             >
               <Flex
                 flexDirection={"column"}
-                key={tName}
+                key={index}
                 alignItems={"center"}
                 justifyContent={"center"}
-                // overflowY={"scroll"}
               >
                 <Text fontWeight={"bold"}> TEAM {tName}</Text>
                 {teams[tName].map((user) => (
-                  <Text key={user.UserId}>{user.FullName}</Text>
+                  <Text key={user.userId}>{user.fullName}</Text>
                 ))}
-                <Text>Sup</Text>
-                <Text>Sup</Text>
-                <Text>Sup</Text>
-                <Text>Sup</Text>
-                <Text>Sup</Text>
+                <Text fontWeight={"bold"}> TEAM {tName}</Text>
+                {teams[tName].map((user) => (
+                  <Text key={user.userId}>{user.fullName}</Text>
+                ))}
               </Flex>
             </Scrollbars>
           </Box>

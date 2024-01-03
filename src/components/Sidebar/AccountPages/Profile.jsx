@@ -32,11 +32,6 @@ const Profile = () => {
           bg={"gray"}
           borderRadius={"50%"}
           position={"relative"}
-          _hover={{
-            "> .edit": {
-              display: "block",
-            },
-          }}
         >
           <Image
             src={avatar1}
