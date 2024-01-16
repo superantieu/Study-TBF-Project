@@ -24,7 +24,7 @@ const OngoingProject = () => {
     isLoading,
   } = useGetOngoingProjectQuery({
     Completed: false,
-    pageSize: 50,
+    pageSize: 10,
   });
 
   return (
@@ -56,9 +56,6 @@ const OngoingProject = () => {
                   <Th color={"red.300"}>Members</Th>
                   <Th color={"red.300"}>Used Hours</Th>
                   <Th color={"red.300"}>Target Hours</Th>
-                  <Th textAlign={"center"} color={"red.300"}>
-                    Completion
-                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -82,17 +79,6 @@ const OngoingProject = () => {
                     <Td>{arr.filterMembers.length}</Td>
                     <Td>{arr.usedHours}</Td>
                     <Td>{arr.totalHours}</Td>
-                    <Td padding={"4px"} textAlign={"center"}>
-                      <CircularProgress
-                        value={arr.completion}
-                        color="red.400"
-                        size={"46px"}
-                      >
-                        <CircularProgressLabel>
-                          {arr.completion}%
-                        </CircularProgressLabel>
-                      </CircularProgress>
-                    </Td>
                   </Tr>
                 ))}
               </Tbody>

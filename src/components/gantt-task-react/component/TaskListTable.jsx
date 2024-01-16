@@ -17,15 +17,7 @@ const dateTimeOptions = {
   day: "2-digit",
 };
 
-const TaskListTable = ({
-  rowHeight,
-  rowWidth,
-  tasks,
-  fontFamily,
-  fontSize,
-  locale,
-  onExpanderClick,
-}) => {
+const TaskListTable = ({ tasks, locale, onExpanderClick }) => {
   const toLocaleDateString = useMemo(
     () => toLocaleDateStringFactory(locale),
     [locale]
@@ -68,7 +60,15 @@ const TaskListTable = ({
                   >
                     {expanderSymbol}
                   </Box>
-                  <Text>{t.name}</Text>
+                  <Text
+                    maxWidth={"150px"}
+                    whiteSpace={"nowrap"}
+                    maxH={"40px"}
+                    overflow={"hidden"}
+                    textOverflow={"ellipsis"}
+                  >
+                    {t.name}
+                  </Text>
                 </Flex>
               </Td>
               <Td minW={"100px"} maxW={"100px"} p={"1px"}>

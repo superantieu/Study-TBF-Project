@@ -6,11 +6,10 @@ const ContributeChart = (props) => {
   const options = {
     chart: {
       width: 480,
-
       type: "donut",
     },
     labels: Object.keys(totalhour).map((arr) => {
-      return "team " + arr;
+      return arr;
     }),
     legend: {
       labels: {

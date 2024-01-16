@@ -2,6 +2,7 @@ import ReactApexChart from "react-apexcharts";
 
 const ContributeByPerson = (props) => {
   const { personhour } = props;
+  console.log("personhour: ", personhour);
   const series = [{ name: "Work", data: Object.values(personhour) }];
   const options = {
     chart: {
@@ -46,10 +47,12 @@ const ContributeByPerson = (props) => {
       categories: Object.keys(personhour),
       tickPlacement: "on",
       labels: {
+        rotate: -45,
+        trim: true,
+        hideOverlappingLabels: false,
         style: {
-          colors: Object.keys(personhour).map(() => {
-            return "#e7dede";
-          }),
+          colors: "#e7dede",
+          fontSize: "12px",
         },
       },
       position: "bottom",

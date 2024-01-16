@@ -1,4 +1,4 @@
-import { Flex, Select, Box, Stack, chakra } from "@chakra-ui/react";
+import { Select, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 
 import SecondFilter from "./SecondFilter";

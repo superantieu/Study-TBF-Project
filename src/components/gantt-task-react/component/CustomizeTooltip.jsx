@@ -1,6 +1,4 @@
-import { Box, Flex, Stack, Text } from "@chakra-ui/react";
-
-// import "../table.css";
+import { Stack, Text } from "@chakra-ui/react";
 
 const CustomizeTooltip = ({ task, fontSize, fontFamily }) => {
   const style = {

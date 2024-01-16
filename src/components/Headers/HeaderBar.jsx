@@ -17,19 +17,24 @@ import {
   useOutsideClick,
   Select,
 } from "@chakra-ui/react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import SearchTable from "./SearchTable";
+import useDebounce from "../../hooks/useDebounce/useDebounce";
 
 const HeaderBar = () => {
   const [focus, setFocus] = useState(false);
   const ref = useRef();
   const [inputValue, setInputValue] = useState("");
-  const [searchvalue, setSearchvalue] = useState("");
+  const [type, setType] = useState("Projects");
+
+  const handlleSelect = (e) => {
+    setType(e.target.value);
+  };
   const handleChange = (e) => {
-    setSearchvalue(e.target.value.toLowerCase());
     setInputValue(e.target.value);
   };
+  const searchvalue = useDebounce(inputValue.toLowerCase(), 500);
 
   useOutsideClick({
     ref: ref,
@@ -38,13 +43,6 @@ const HeaderBar = () => {
       setInputValue("");
     },
   });
-  const [type, setType] = useState("member");
-  const handlleSelect = (e) => {
-    setType(e.target.value);
-  };
-  useEffect(() => {
-    setSearchvalue("");
-  }, [type]);
 
   return (
     <Flex
@@ -82,9 +80,9 @@ const HeaderBar = () => {
             bgColor={"transparent"}
             className="selectbox"
           >
-            <option value="member">Member</option>
-            <option value="complete">Completed Project</option>
-            <option value="ongoing">Ongoing Project</option>
+            <option value="Projects">Project</option>
+            <option value="Users">Member</option>
+            <option value="Tasks/Discipline">Discipline</option>
           </Select>
         </Flex>
         <InputGroup

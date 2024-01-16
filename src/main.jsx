@@ -102,10 +102,14 @@ const customTheme = extendTheme({
         display: "flex",
         gap: "20px",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
       },
       ".apexcharts-hidden-element-shown": {
         transform: "translateY(-3px)",
+      },
+      ".apexcharts-tooltip": {
+        whiteSpace: "break-spaces !important",
+        maxWidth: "250px",
       },
       "._2dZTy:nth-of-type(2n)": {
         fill: "#fff",

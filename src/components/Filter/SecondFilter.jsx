@@ -1,9 +1,6 @@
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import projects from "../data/projects";
-import ongoingProject from "../data/ongoing";
-import User from "../data/users";
 import groupbykey from "../../utility/groupbykey";
 
 const SecondFilter = (props) => {

@@ -5,11 +5,47 @@ import {
   Text,
   AbsoluteCenter,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 
-import statsoverall from "../data/statsoverall";
+import { useGetAllUsersQuery } from "../../services/ongoingApi";
 
 const StatsOverall = () => {
+  const {
+    data: users,
+    error,
+    isLoading,
+  } = useGetAllUsersQuery({
+    Employed: 1,
+    pageSize: 500,
+  });
+  if (isLoading) {
+    return (
+      <Flex align={"center"} justify={"center"} mt={"36px"}>
+        <Spinner color="red.500" size="lg" />
+      </Flex>
+    );
+  }
+  const projectTeamSize = users.result.filter(
+    (user) =>
+      user.discipline === "Architecture" ||
+      user.discipline === "MEP" ||
+      user.discipline === "Structure"
+  ).length;
+
+  const manager = users.result.filter(
+    (user) =>
+      ["Architecture", "Structure", "MEP"].includes(user.discipline) &&
+      ["Manager II", "Senior Manager I", "Senior Manager II"].includes(
+        user.jobTitle
+      )
+  ).length;
+
+  const leader = users.result.filter(
+    (user) =>
+      ["Architecture", "Structure", "MEP"].includes(user.discipline) &&
+      user.jobTitle === "Manager I"
+  ).length;
   return (
     <Stack color={"#fff"}>
       <Box position="relative" padding="10" mt={"18PX"}>
@@ -35,45 +71,51 @@ const StatsOverall = () => {
         <Stack align={"center"} justify={"center"}>
           <Text>Project Team Size</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.projectteamsize}
+            {projectTeamSize}
           </Text>
         </Stack>
         <Divider orientation="vertical" borderColor={"red.500"} h={"70px"} />
         <Stack align={"center"} justify={"center"}>
           <Text>Architects</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.architectures}
+            {
+              users.result.filter((user) => user.discipline === "Architecture")
+                .length
+            }
           </Text>
         </Stack>
         <Stack align={"center"} justify={"center"}>
           <Text>Structures</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.structures}
+            {
+              users.result.filter((user) => user.discipline === "Structure")
+                .length
+            }
           </Text>
         </Stack>
         <Stack align={"center"} justify={"center"}>
           <Text>MEP</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.mep}
+            {users.result.filter((user) => user.discipline === "MEP").length}
           </Text>
         </Stack>
         <Divider orientation="vertical" borderColor={"red.500"} h={"70px"} />
         <Stack align={"center"} justify={"center"}>
           <Text>Staff</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.staff}
+            {projectTeamSize - leader - manager}
           </Text>
         </Stack>
         <Stack align={"center"} justify={"center"}>
           <Text>Team Leaders</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.teamleader}
+            {leader}
           </Text>
         </Stack>
         <Stack align={"center"} justify={"center"}>
           <Text>Managers</Text>
           <Text fontSize={"28px"} fontWeight={"bold"}>
-            {statsoverall.manager}
+            {manager}
           </Text>
         </Stack>
       </Flex>

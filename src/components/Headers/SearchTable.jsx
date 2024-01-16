@@ -1,61 +1,59 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Link as SupLink } from "@chakra-ui/react";
+import { Flex, Link as SupLink, Text, Spinner } from "@chakra-ui/react";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useEffect } from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
 
-import projects from "../data/projects";
-import User from "../data/users";
-import ongoingProject from "../data/ongoing";
+import { useGetSearchProjectQuery } from "../../services/ongoingApi";
+import { DIRECT_OPTION } from "../../constants/page-direct";
 
 const SearchTable = (props) => {
-  const searchvalue = props.searchvalue;
-  const type = props.type;
+  const { searchvalue, type } = props;
 
-  var searchAndDirect = {};
-  const getSearchType = (type) => {
-    switch (type) {
-      case "member":
-        searchAndDirect.searchValue = User.map((user) => {
-          if (user.FullName.toLowerCase().includes(searchvalue)) {
-            return user;
-          }
-        });
-        searchAndDirect.direct = "/users/";
-        searchAndDirect.name = "FullName";
-        searchAndDirect.id = "UserId";
-        break;
-      case "complete":
-        searchAndDirect.searchValue = projects.map((project) => {
-          if (project.ProjectName.toLowerCase().includes(searchvalue)) {
-            return project;
-          }
-        });
-        searchAndDirect.direct = "/projectdetail/";
-        searchAndDirect.name = "ProjectName";
-        searchAndDirect.id = "ProjectId";
-        break;
-      case "ongoing":
-        searchAndDirect.searchValue = ongoingProject.map((ongoing) => {
-          if (ongoing.ProjectName.toLowerCase().includes(searchvalue)) {
-            return ongoing;
-          }
-        });
-        searchAndDirect.direct = "/projectdetail/";
-        searchAndDirect.name = "ProjectName";
-        searchAndDirect.id = "ProjectId";
-        break;
-      default:
-        [];
-    }
+  const [renderValue, setRenderValue] = useState([]);
 
-    return searchAndDirect;
-  };
-
-  const value = getSearchType(type).searchValue.filter(
-    (searchvalue) => searchvalue !== undefined
+  const {
+    data: searchProjects,
+    error,
+    isLoading,
+  } = useGetSearchProjectQuery(
+    searchvalue
+      ? {
+          type: type,
+          SearchTerm: searchvalue,
+          pageSize: 10,
+        }
+      : skipToken
   );
+  console.log("project", searchProjects?.result);
 
-  useEffect(() => {}, [searchvalue]);
+  useMemo(() => {
+    if (searchProjects?.result && searchvalue) {
+      setRenderValue(searchProjects.result);
+    } else {
+      setRenderValue([]);
+    }
+  }, [searchProjects?.result, searchvalue]);
+
+  if (isLoading) {
+    return (
+      <Scrollbars
+        autoHide={true}
+        autoHideTimeout={1000}
+        style={{
+          backgroundColor: "#5f5a5a",
+          borderRadius: "0 0 10px 10px",
+        }}
+      >
+        <Flex flexDirection={"column"} padding={"8px"}>
+          <Flex align={"center"} justify={"center"} mt={"36px"}>
+            <Spinner color="red.500" size="lg" />
+          </Flex>
+        </Flex>
+      </Scrollbars>
+    );
+  }
+
   return (
     <Scrollbars
       autoHide={true}
@@ -66,15 +64,22 @@ const SearchTable = (props) => {
       }}
     >
       <Flex flexDirection={"column"} padding={"8px"}>
-        {value.map((arr, index) => (
+        {renderValue.map((arr, index) => (
           <SupLink
             as={Link}
-            to={`${searchAndDirect.direct}${arr[searchAndDirect.id]}`}
+            to={`${DIRECT_OPTION[type].direct}${arr[DIRECT_OPTION[type].id]}`}
             key={index}
             cursor={"pointer"}
             _hover={{ color: "red" }}
           >
-            {searchvalue ? arr[searchAndDirect.name] : ""}
+            <Text
+              maxW={"240px"}
+              overflow={"hidden"}
+              textOverflow={"ellipsis"}
+              whiteSpace={"nowrap"}
+            >
+              {arr[DIRECT_OPTION[type].name]}
+            </Text>
           </SupLink>
         ))}
       </Flex>

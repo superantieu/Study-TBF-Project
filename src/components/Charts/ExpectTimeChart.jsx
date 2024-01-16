@@ -73,7 +73,7 @@ const ExpectTimeChart = (props) => {
     },
     plotOptions: {
       bar: {
-        columnWidth: "60%",
+        columnWidth: "40%",
       },
       line: {
         strokeWidth: 3, // Kích thước của vạch
@@ -98,10 +98,13 @@ const ExpectTimeChart = (props) => {
     },
     xaxis: {
       labels: {
+        show: true,
+        rotate: 0,
+        hideOverlappingLabels: false,
+        trim: true,
         style: {
-          colors: data.map(() => {
-            return "#fff";
-          }),
+          colors: "#fff",
+          fontSize: "12px",
         },
       },
     },
@@ -132,7 +135,7 @@ const ExpectTimeChart = (props) => {
     },
   };
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={450} />
+    <ReactApexChart options={options} series={series} type="bar" height={400} />
   );
 };
 export default ExpectTimeChart;

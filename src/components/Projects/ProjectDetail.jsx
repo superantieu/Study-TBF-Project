@@ -16,7 +16,6 @@ import { LuAlignHorizontalJustifyStart } from "react-icons/lu";
 import { GiFinishLine, GiTargetShot } from "react-icons/gi";
 import { useState, useRef } from "react";
 
-import groupbykey from "../../utility/groupbykey";
 import Contribution from "../Charts/Contribution";
 import ContributeChart from "../Charts/ContributeChart";
 import ContributeByPerson from "../Charts/ContribueByPerson";
@@ -25,8 +24,6 @@ import { useGetTimeSheetQuery } from "../../services/ongoingApi";
 
 const ProjectDetail = (props) => {
   const { project } = props;
-  const users = project.filterMembers;
-  const teams = groupbykey(users, "discipline");
 
   const [contribute, setContribute] = useState("team");
   const ref = useRef();
@@ -35,14 +32,15 @@ const ProjectDetail = (props) => {
     ref: ref,
     handler: () => setIsSelectOpen(false),
   });
-  let tshours, tsperson;
+  let tshours, tsperson, tstask;
+  var teams = {};
   const {
     data: timeSheetData,
     error,
     isLoading,
   } = useGetTimeSheetQuery({
     ProjectId: project.projectId,
-    pageSize: 50,
+    pageSize: 5000,
   });
 
   if (!isLoading) {
@@ -50,22 +48,36 @@ const ProjectDetail = (props) => {
       var needHours = acc[cur["userDiscipline"]]
         ? acc[cur["userDiscipline"]]
         : 0;
-      acc[cur["userDiscipline"]] = needHours + cur["tshours"];
+      acc[cur["userDiscipline"]] = needHours + cur["tshour"];
       return acc;
     }, {});
 
+    tstask = timeSheetData.result.reduce((acc, cur) => {
+      var needHours = acc[cur["taskId"]] ? acc[cur["taskId"]] : 0;
+      acc[cur["taskId"]] = needHours + cur["tshour"];
+      return acc;
+    }, {});
     tsperson = timeSheetData.result.reduce((acc, cur) => {
-      project.filterMembers.map((mem) => {
-        if (cur.userId === mem.userId) {
-          return (acc[mem.fullName] = cur.tshours);
-        }
-      });
+      var needHours = acc[cur["userName"]] ? acc[cur["userName"]] : 0;
+      acc[cur["userName"]] = needHours + cur["tshour"];
+      return acc;
+    }, {});
+    teams = timeSheetData.result.reduce((acc, cur) => {
+      var needArr = acc[cur["userDiscipline"]]
+        ? acc[cur["userDiscipline"]]
+        : [];
+      acc[cur["userDiscipline"]] = needArr.includes(cur["userName"])
+        ? needArr
+        : [...needArr, cur["userName"]];
       return acc;
     }, {});
   }
-
   const handleChart = (e) => {
-    e.target.value === "team" ? setContribute("team") : setContribute("person");
+    e.target.value === "team"
+      ? setContribute("team")
+      : e.target.value === "task"
+      ? setContribute("task")
+      : setContribute("person");
   };
 
   return (
@@ -348,7 +360,7 @@ const ProjectDetail = (props) => {
           >
             <option value="team">TEAM</option>
             <option value="person">PERSON</option>
-            {/* <option value="task">TASK</option> */}
+            <option value="task">TASK</option>
           </Select>
 
           <Flex
@@ -365,6 +377,8 @@ const ProjectDetail = (props) => {
                 </Flex>
               ) : contribute === "team" ? (
                 <ContributeChart totalhour={tshours} />
+              ) : contribute === "task" ? (
+                <ContributeByTask taskhour={tstask} />
               ) : (
                 <ContributeByPerson personhour={tsperson} />
               )}
@@ -381,6 +395,7 @@ const ProjectDetail = (props) => {
           </Flex>
         </Box>
       </Flex>
+
       <Divider mt={"20px"} mb={"20px"}></Divider>
     </Box>
   );

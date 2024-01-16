@@ -24,10 +24,10 @@ const Contribution = (props) => {
             border={"4px double #e7dede"}
             mt={"10px"}
             mb={"10px"}
-            padding={"10px"}
+            padding={"5px"}
             color={"#e7dede"}
             key={index}
-            minWidth={"150px"}
+            minWidth={"220px"}
             h={"150px"}
             overflow={"hidden"}
           >
@@ -45,13 +45,9 @@ const Contribution = (props) => {
                 alignItems={"center"}
                 justifyContent={"center"}
               >
-                <Text fontWeight={"bold"}> TEAM {tName}</Text>
-                {teams[tName].map((user) => (
-                  <Text key={user.userId}>{user.fullName}</Text>
-                ))}
-                <Text fontWeight={"bold"}> TEAM {tName}</Text>
-                {teams[tName].map((user) => (
-                  <Text key={user.userId}>{user.fullName}</Text>
+                <Text fontWeight={"bold"}>{tName}</Text>
+                {teams[tName].map((user, index) => (
+                  <Text key={index}>{user}</Text>
                 ))}
               </Flex>
             </Scrollbars>

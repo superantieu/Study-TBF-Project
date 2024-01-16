@@ -12,9 +12,21 @@ export const ongoingApi = createApi({
         params,
       }),
     }),
+    getSearchProject: builder.query({
+      query: ({ type, ...params }) => ({
+        url: `${type}`,
+        params,
+      }),
+    }),
     getSpecificProject: builder.query({
       query: (params) => ({
         url: `Projects/${params}`,
+      }),
+    }),
+    getCompactProject: builder.query({
+      query: (params) => ({
+        url: `Projects/Compact`,
+        params,
       }),
     }),
     getTimeSheet: builder.query({
@@ -23,9 +35,39 @@ export const ongoingApi = createApi({
         params,
       }),
     }),
+    getUser: builder.query({
+      query: (params) => ({
+        url: `Users/${params}`,
+      }),
+    }),
+    getTask: builder.query({
+      query: (params) => ({
+        url: `Tasks/${params}`,
+      }),
+    }),
+    getAllUsers: builder.query({
+      query: (params) => ({
+        url: `Users`,
+        params,
+      }),
+    }),
+    getDiscipline: builder.query({
+      query: (params) => ({
+        url: `Tasks/Discipline`,
+        params,
+      }),
+    }),
   }),
 });
 
-export const { useGetOngoingProjectQuery } = ongoingApi;
-export const { useGetTimeSheetQuery } = ongoingApi;
-export const { useGetSpecificProjectQuery } = ongoingApi;
+export const {
+  useGetOngoingProjectQuery,
+  useGetCompactProjectQuery,
+  useGetTimeSheetQuery,
+  useGetSpecificProjectQuery,
+  useGetUserQuery,
+  useGetTaskQuery,
+  useGetAllUsersQuery,
+  useGetDisciplineQuery,
+  useGetSearchProjectQuery,
+} = ongoingApi;

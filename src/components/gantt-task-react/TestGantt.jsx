@@ -44,11 +44,19 @@ const TestGantt = () => {
         end: new Date(dt.targetDate),
         name: dt.projectName,
         id: dt.projectId,
-        progress: Math.round(
-          (100 * (new Date().getTime() - new Date(dt.startDate).getTime())) /
-            (new Date(dt.targetDate).getTime() -
-              new Date(dt.startDate).getTime())
-        ),
+        progress:
+          Math.round(
+            (100 * (new Date().getTime() - new Date(dt.startDate).getTime())) /
+              (new Date(dt.targetDate).getTime() -
+                new Date(dt.startDate).getTime())
+          ) > 100
+            ? 100
+            : Math.round(
+                (100 *
+                  (new Date().getTime() - new Date(dt.startDate).getTime())) /
+                  (new Date(dt.targetDate).getTime() -
+                    new Date(dt.startDate).getTime())
+              ),
         type: "project",
         hideChildren: false,
         displayOrder: index + 1, // Vị trí hàng trên gantt chart

@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Button } from "@chakra-ui/react";
 import { FcLike } from "react-icons/fc";
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { MdCall } from "react-icons/md";

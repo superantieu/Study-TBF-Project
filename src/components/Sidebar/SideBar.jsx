@@ -1,15 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  Link as SupLink,
-  Box,
-  Text,
-  Stack,
-  Button,
-  Flex,
-} from "@chakra-ui/react";
+import { Link as SupLink, Text, Stack, Button, Flex } from "@chakra-ui/react";
 
-import arrayNameRoute from "../data/arrayNameRoute";
-import Filter from "../Filter/Filter";
+import arrayNameRoute from "../../app/arrayNameRoute";
 
 const SideBar = () => {
   const location = useLocation();
@@ -64,8 +56,6 @@ const SideBar = () => {
           );
         })}
       </Stack>
-
-      <Filter />
     </Stack>
   );
 };

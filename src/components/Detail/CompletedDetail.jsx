@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { Flex, Spinner } from "@chakra-ui/react";
 
 import ProjectList from "../Projects/ProjectList";
-import projects from "../data/projects";
-import ongoingProject from "../data/ongoing";
 import RenderThumb from "../../scrollbar/RenderThumb.jsx";
 import { useGetSpecificProjectQuery } from "../../services/ongoingApi.js";
 

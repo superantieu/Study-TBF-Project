@@ -1,18 +1,22 @@
 import Scrollbars from "react-custom-scrollbars-2";
 import { Flex, Spinner } from "@chakra-ui/react";
+import { useState } from "react";
 
 import ProjectList from "./ProjectList";
 import RenderThumb from "../../scrollbar/RenderThumb.jsx";
 import { useGetOngoingProjectQuery } from "../../services/ongoingApi.js";
+import Pagination from "../Pagination/Pagination.jsx";
 
 const Projects = () => {
+  const [page, setPage] = useState(1);
   const {
     data: Projects,
     error,
     isLoading,
   } = useGetOngoingProjectQuery({
+    pageNumber: page,
     Completed: true,
-    pageSize: 50,
+    pageSize: 10,
   });
   if (isLoading) {
     return (
@@ -30,6 +34,13 @@ const Projects = () => {
       renderThumbVertical={RenderThumb}
     >
       <ProjectList projects={Projects.result} />
+      <Flex align={"center"} justify={"center"}>
+        <Pagination
+          current={Projects.pagination.currentPage}
+          pageCount={Projects.pagination.totalPages}
+          setCurrent={setPage}
+        />
+      </Flex>
     </Scrollbars>
   );
 };
