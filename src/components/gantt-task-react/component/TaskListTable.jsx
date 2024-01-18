@@ -30,7 +30,7 @@ const TaskListTable = ({ tasks, locale, onExpanderClick }) => {
         borderLeft={"1px solid #e0e0e0"}
         borderBottom={"1px solid #e0e0e0"}
       >
-        {tasks.map((t) => {
+        {tasks.map((t, index) => {
           let expanderSymbol = "";
           if (t.hideChildren === false) {
             expanderSymbol = "▼";
@@ -67,7 +67,7 @@ const TaskListTable = ({ tasks, locale, onExpanderClick }) => {
                     overflow={"hidden"}
                     textOverflow={"ellipsis"}
                   >
-                    {t.name}
+                    {index + 1} {t.name}
                   </Text>
                 </Flex>
               </Td>

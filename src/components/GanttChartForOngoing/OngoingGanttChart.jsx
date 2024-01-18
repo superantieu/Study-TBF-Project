@@ -27,6 +27,7 @@ const OngoingGanttChart = () => {
             PROGRESS OF ON-GOING PROJECT
           </AbsoluteCenter>
         </Box>
+
         <Box
           m={"0px 20px"}
           p={"10px"}

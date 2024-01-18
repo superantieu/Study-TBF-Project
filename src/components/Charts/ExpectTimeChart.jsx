@@ -1,7 +1,15 @@
 import ReactApexChart from "react-apexcharts";
+import { useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
+
+import BasicModal from "../GanttChartForOngoing/BasicModal";
 
 const ExpectTimeChart = (props) => {
   const { data } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [direct, setDirect] = useState();
+  const [name, setName] = useState("");
+
   const target = data.map((obj) => {
     return {
       x: obj.projectName,
@@ -58,6 +66,18 @@ const ExpectTimeChart = (props) => {
       height: 350,
       stacked: true,
       type: "bar",
+      events: {
+        dataPointSelection: (event, chartContext, config) => {
+          if (event.button === 2) {
+            const wantDirect = data[config.dataPointIndex]["projectId"];
+            const wantName = data[config.dataPointIndex]["projectName"];
+            console.log("want", wantDirect, wantName);
+            setDirect(wantDirect);
+            setName(wantName);
+            onOpen();
+          }
+        },
+      },
       toolbar: {
         show: false,
       },
@@ -135,7 +155,20 @@ const ExpectTimeChart = (props) => {
     },
   };
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={400} />
+    <>
+      <BasicModal
+        isOpen={isOpen}
+        onClose={onClose}
+        direct={direct}
+        name={name}
+      />
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={400}
+      />
+    </>
   );
 };
 export default ExpectTimeChart;

@@ -93,7 +93,7 @@ const ProjectDetail = (props) => {
       >
         {project.projectName.toUpperCase()}
       </Flex>
-      <Flex justify={"space-between"} mr={"10px"} gap={"20px"} mt={"20px"}>
+      <Flex justify={"space-between"} mr={"10px"} mt={"20px"}>
         <Flex
           ml={"10px"}
           justify={"space-between"}

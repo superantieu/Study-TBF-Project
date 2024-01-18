@@ -52,9 +52,13 @@ const Dashboard = () => {
     setOrderBy(e.target.value);
     dispatch(setChoose([]));
   };
-  console.log("Orderby: ", orderBy);
+
   useEffect(() => {}, [enable]);
   //
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
   return (
     <Scrollbars
       autoHide={true}
@@ -153,11 +157,12 @@ const Dashboard = () => {
           mt={"20px"}
         >
           <Box
-            flex={"1"}
+            w={"100%"}
             bg={"#08040459"}
             borderRadius={"20px"}
             minH={"515px"}
             position={"relative"}
+            onContextMenu={handleContextMenu}
           >
             <TotalProjectChart
               orderBy={orderBy === "" ? "startDate" : orderBy}
@@ -204,8 +209,6 @@ const Dashboard = () => {
             >
               <option value="startDate">Newest</option>
               <option value="startDate desc">Oldest</option>
-              <option value="floorAreas">Smallest FloorArea</option>
-              <option value="floorAreas desc">Biggest FloorArea</option>
             </Select>
           </Box>
           {enable.locate && (
@@ -213,7 +216,6 @@ const Dashboard = () => {
               flexDirection={"column"}
               maxW={"calc(50% - 20px)"}
               minW={"calc(50% - 20px)"}
-              flex={"1"}
               bg={"#08040459"}
               borderRadius={"20px"}
               padding={"20px"}
@@ -241,11 +243,9 @@ const Dashboard = () => {
               flexDirection={"column"}
               maxW={"calc(50% - 20px)"}
               minW={"calc(50% - 20px)"}
-              flex={"1"}
               bg={"#08040459"}
               borderRadius={"20px"}
               padding={"20px"}
-              h={"450px"}
               align={"center"}
               justify={"center"}
               minH={"515px"}
@@ -269,11 +269,9 @@ const Dashboard = () => {
               flexDirection={"column"}
               maxW={"calc(50% - 20px)"}
               minW={"calc(50% - 20px)"}
-              flex={"1"}
               bg={"#08040459"}
               borderRadius={"20px"}
               padding={"20px"}
-              h={"450px"}
               align={"center"}
               justify={"center"}
               minH={"515px"}

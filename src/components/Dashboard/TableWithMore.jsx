@@ -20,7 +20,7 @@ const TableMore = () => {
     {
       Header: "Project",
       accessor: "project",
-      width: "290px",
+      width: "240px",
       cell: ({ value }) => {
         return (
           <Text
@@ -38,7 +38,7 @@ const TableMore = () => {
     {
       Header: "Startdate",
       accessor: "startdate",
-      width: "160px",
+      width: "150px",
       cell: ({ value }) => {
         return (
           <Text
@@ -58,7 +58,7 @@ const TableMore = () => {
     {
       Header: "Targetdate",
       accessor: "targetdate",
-      width: "160px",
+      width: "150px",
       cell: ({ value }) => {
         return (
           <Text
@@ -78,7 +78,7 @@ const TableMore = () => {
     {
       Header: "CompletedDate",
       accessor: "completedDate",
-      width: "160px",
+      width: "150px",
       cell: ({ value }) => {
         return (
           <Text
@@ -98,7 +98,7 @@ const TableMore = () => {
     {
       Header: "Members",
       accessor: "members",
-      width: "125px",
+      width: "115px",
       cell: ({ value }) => {
         return (
           <Text
@@ -114,7 +114,7 @@ const TableMore = () => {
     {
       Header: "Used Hours",
       accessor: "used",
-      width: "130px",
+      width: "120px",
       cell: ({ value }) => {
         return (
           <Text
@@ -130,7 +130,7 @@ const TableMore = () => {
     {
       Header: "Target Hours",
       accessor: "target",
-      width: "155px",
+      width: "125px",
       cell: ({ value }) => {
         return (
           <Text

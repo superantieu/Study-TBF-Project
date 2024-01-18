@@ -107,10 +107,26 @@ const customTheme = extendTheme({
       ".apexcharts-hidden-element-shown": {
         transform: "translateY(-3px)",
       },
+      // ".calendar": {
+      //   position: "sticky",
+      //   top: "50px",
+      //   background: "#272a2f !important",
+      //   zIndex: 80,
+      // },
       ".apexcharts-tooltip": {
         whiteSpace: "break-spaces !important",
         maxWidth: "250px",
       },
+      ".apexcharts-tooltip-goals-group": {
+        alignItems: "flex-end !important",
+      },
+      ".apexcharts-tooltip-marker": {
+        top: "10px !important",
+      },
+      ".apexcharts-tooltip-series-group": {
+        alignItems: "flex-start !important",
+      },
+
       "._2dZTy:nth-of-type(2n)": {
         fill: "#fff",
       },

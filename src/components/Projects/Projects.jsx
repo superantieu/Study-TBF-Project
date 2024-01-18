@@ -9,6 +9,7 @@ import Pagination from "../Pagination/Pagination.jsx";
 
 const Projects = () => {
   const [page, setPage] = useState(1);
+
   const {
     data: Projects,
     error,
@@ -18,6 +19,7 @@ const Projects = () => {
     Completed: true,
     pageSize: 10,
   });
+
   if (isLoading) {
     return (
       <Flex align={"center"} justify={"center"} mt={"36px"}>

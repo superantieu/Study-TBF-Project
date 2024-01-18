@@ -1,14 +1,19 @@
 import ReactApexChart from "react-apexcharts";
-import { Flex, Spinner } from "@chakra-ui/react";
+import { Flex, Spinner, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 import groupbykey from "../../utility/groupbykey";
 import { useGetOngoingProjectQuery } from "../../services/ongoingApi";
 import { chooseSelector } from "../../redux/chooseSlice";
+import BasicModal from "../GanttChartForOngoing/BasicModal";
 
 const TotalProjectChart = (props) => {
   const filter = useSelector(chooseSelector);
   const valueFilter = filter.value.toString();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [direct, setDirect] = useState();
+  const [name, setName] = useState("");
 
   const { orderBy } = props;
   const {
@@ -46,10 +51,16 @@ const TotalProjectChart = (props) => {
   });
 
   const series = [
+    // {
+    //   name: "Floor Area",
+    //   data: ongoProjects.result.map((obj) => {
+    //     return obj.floorAreas;
+    //   }),
+    // },
     {
-      name: "Floor Area",
+      name: "Tasks",
       data: ongoProjects.result.map((obj) => {
-        return obj.floorAreas;
+        return obj.tasks;
       }),
     },
     {
@@ -66,6 +77,19 @@ const TotalProjectChart = (props) => {
       height: 450,
       width: 300,
       type: "bar",
+      events: {
+        dataPointSelection: (event, chartContext, config) => {
+          if (event.button === 2) {
+            const wantDirect =
+              ongoProjects.result[config.dataPointIndex]["projectId"];
+            const wantName =
+              ongoProjects.result[config.dataPointIndex]["projectName"];
+            setDirect(wantDirect);
+            setName(wantName);
+            onOpen();
+          }
+        },
+      },
       zoom: {
         enabled: true,
       },
@@ -140,13 +164,13 @@ const TotalProjectChart = (props) => {
           color: "#008FFB",
         },
         labels: {
-          // offsetX: -40,
           style: {
             colors: "#008FFB",
           },
         },
         title: {
-          text: "Floor Areas (square meter)",
+          // text: "Floor Areas (square meter)",
+          text: "Number of Tasks",
           style: {
             color: "#008FFB",
             fontSize: "14px",
@@ -167,7 +191,6 @@ const TotalProjectChart = (props) => {
           color: "yellow",
         },
         labels: {
-          // offsetX: -40,
           style: {
             colors: "yellow",
           },
@@ -191,7 +214,6 @@ const TotalProjectChart = (props) => {
           color: "#de7818",
         },
         labels: {
-          // offsetX: -40,
           style: {
             colors: "#de7818",
           },
@@ -238,13 +260,21 @@ const TotalProjectChart = (props) => {
   };
 
   return (
-    <ReactApexChart
-      options={options}
-      series={series}
-      type="bar"
-      // width={600}
-      height={500}
-    />
+    <>
+      <BasicModal
+        isOpen={isOpen}
+        onClose={onClose}
+        direct={direct}
+        name={name}
+      />
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        // width={"200%"}
+        height={500}
+      />
+    </>
   );
 };
 

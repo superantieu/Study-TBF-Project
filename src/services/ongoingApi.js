@@ -45,6 +45,12 @@ export const ongoingApi = createApi({
         url: `Tasks/${params}`,
       }),
     }),
+    getAllTasks: builder.query({
+      query: (params) => ({
+        url: `Tasks`,
+        params,
+      }),
+    }),
     getAllUsers: builder.query({
       query: (params) => ({
         url: `Users`,
@@ -67,6 +73,7 @@ export const {
   useGetSpecificProjectQuery,
   useGetUserQuery,
   useGetTaskQuery,
+  useGetAllTasksQuery,
   useGetAllUsersQuery,
   useGetDisciplineQuery,
   useGetSearchProjectQuery,

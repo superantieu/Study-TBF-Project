@@ -48,7 +48,10 @@ const TableWithPagination = ({
     useSortBy,
     usePagination
   );
-
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
   return (
     <Box mt={"30px"}>
       <Box position="relative" padding="10">
@@ -67,6 +70,7 @@ const TableWithPagination = ({
         borderRadius={"20px"}
         m={"0 20px 20px 20px"}
         padding={"0 20px"}
+        onContextMenu={handleContextMenu}
       >
         <ExpectTimeChart data={chartData} />
       </Box>

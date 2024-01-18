@@ -61,10 +61,10 @@ const HeaderBar = () => {
         align={"center"}
         gap={"5px"}
       >
-        <MoonIcon fontSize={"24px"} color={"red.500"} />
+        {/* <MoonIcon fontSize={"24px"} color={"red.500"} /> */}
         <SupLink as={Link} to="/" _hover={{ bg: "transparent" }}>
           <Text fontSize={"20px"} color={"white"} padding={"10px"}>
-            Super Antieu
+            TBF Project Stats
           </Text>
         </SupLink>
       </Flex>

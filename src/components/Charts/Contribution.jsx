@@ -24,7 +24,7 @@ const Contribution = (props) => {
             border={"4px double #e7dede"}
             mt={"10px"}
             mb={"10px"}
-            padding={"5px"}
+            padding={"5px 0"}
             color={"#e7dede"}
             key={index}
             minWidth={"220px"}
